@@ -12,8 +12,11 @@ import top.productivitytools.fitness.api.services.WorkoutService;
 import top.productivitytools.fitness.api.dto.requests.AddExercisesRequest;
 import top.productivitytools.fitness.api.dto.requests.AddSetRequest;
 import top.productivitytools.fitness.api.dto.requests.DeleteSetRequest;
+import top.productivitytools.fitness.api.dto.hevy.HevyImportRequest;
+import top.productivitytools.fitness.api.dto.hevy.HevyImportResponse;
 import top.productivitytools.fitness.api.dto.requests.DeleteWorkoutRequest;
 import top.productivitytools.fitness.api.dto.requests.SaveSetRequest;
+import top.productivitytools.fitness.api.services.hevy.HevyImportService;
 
 import java.util.List;
 
@@ -23,6 +26,12 @@ import java.util.List;
 public class WorkoutController {
     
     private final WorkoutService workoutService;
+    private final HevyImportService hevyImportService;
+
+    @PostMapping("/import/hevy")
+    public HevyImportResponse importFromHevy(@RequestBody(required = false) HevyImportRequest request) {
+        return hevyImportService.importWorkouts(request);
+    }
 
     @GetMapping({"/list", ""})
     public List<Workout> getAllWorkouts() {

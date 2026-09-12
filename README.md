@@ -167,6 +167,17 @@ export DB_PASSWORD="dfsafafa"
 ````
 
 
-## Ednpoints
+## Endpoints
 
-http://localhost:8084/api/exercise/list
+* `GET /api/exercise/list`: List available exercises (system + user's custom exercises).
+* `GET /api/workout/list`: List all workouts for current user.
+* `POST /api/workout/import/hevy`: Import workouts from Hevy.
+  * Body:
+    * `access-token`: token dostępu z ciasteczka `access-token` lub `auth2.0-token` po zalogowaniu na hevy.com.
+  * Example request:
+    ```bash
+    curl -X POST http://localhost:8084/api/workout/import/hevy \
+      -H "Authorization: Bearer pwujczyk@gmail.com" \
+      -H "Content-Type: application/json" \
+      -d '{"access-token": "eeKuxxD89Prp2HKAjSn11WM0uTK/boAPYp8PGQG1"}'
+    ```

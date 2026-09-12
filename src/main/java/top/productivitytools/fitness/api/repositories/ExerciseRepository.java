@@ -16,4 +16,7 @@ public interface ExerciseRepository extends ExerciseDbRepository {
 
     @Query("SELECT e FROM Exercise e WHERE e.isSystem = true OR (e.user IS NOT NULL AND e.user.id = :userId) ORDER BY e.name ASC")
     List<Exercise> findAvailableExercisesForUser(@Param("userId") Long userId);
+
+    @Query("SELECT e FROM Exercise e WHERE LOWER(e.name) = LOWER(:name) AND (e.isSystem = true OR (e.user IS NOT NULL AND e.user.id = :userId)) ORDER BY e.isSystem DESC")
+    List<Exercise> findAvailableExercisesByName(@Param("userId") Long userId, @Param("name") String name);
 }
