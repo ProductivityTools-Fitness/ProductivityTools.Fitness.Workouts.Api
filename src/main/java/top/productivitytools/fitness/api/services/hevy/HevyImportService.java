@@ -37,6 +37,7 @@ public class HevyImportService {
     private final HevyClient hevyClient;
     private final WorkoutRepository workoutRepository;
     private final ExerciseRepository exerciseRepository;
+    private final HevyExerciseCatalogService hevyExerciseCatalogService;
 
     @Transactional
     public HevyImportResponse importWorkouts(HevyImportRequest request) {
@@ -56,10 +57,13 @@ public class HevyImportService {
         List<JsonNode> sortedWorkouts = new ArrayList<>(rawWorkouts);
         sortedWorkouts.sort(Comparator.comparing(this::extractStartTime, Comparator.nullsLast(Comparator.naturalOrder())));
 
+        // Preload all catalog exercises (ExerciseDB mapped + unmapped standalone) into DB before processing workouts
+        int preloadedCount = hevyExerciseCatalogService.preloadAllExercises();
+
         int currentMaxNumber = workoutRepository.findMaxWorkoutNumberByUserId(currentUser.getId());
         int importedCount = 0;
         int skippedCount = 0;
-        int exercisesCreated = 0;
+        int exercisesCreated = preloadedCount;
         List<String> importedTitles = new ArrayList<>();
 
         // Cache resolved exercises during this import run to reduce redundant database roundtrips
@@ -180,7 +184,44 @@ public class HevyImportService {
             return cache.get(cacheKey);
         }
 
-        // 1. Check by template ID if present
+        // 1. Check catalog mapping for Hevy title (maps to ExerciseDB exercise or standalone exercise)
+        Optional<HevyExerciseCatalogItem> catalogOpt = hevyExerciseCatalogService.findMapping(title);
+        if (catalogOpt.isPresent()) {
+            HevyExerciseCatalogItem mapping = catalogOpt.get();
+            if (mapping.externalExerciseId() != null && !mapping.externalExerciseId().isBlank()) {
+                Optional<Exercise> byExtId = exerciseRepository.findByExternalExerciseId(mapping.externalExerciseId());
+                if (byExtId.isPresent()) {
+                    Exercise found = byExtId.get();
+                    cache.put(cacheKey, found);
+                    return found;
+                }
+            }
+
+            List<Exercise> byMappedName = exerciseRepository.findAvailableExercisesByName(user.getId(), mapping.name());
+            if (!byMappedName.isEmpty()) {
+                Exercise found = byMappedName.get(0);
+                cache.put(cacheKey, found);
+                return found;
+            }
+
+            // Fallback: create from catalog mapping if not yet in database
+            Exercise mappedEx = new Exercise();
+            mappedEx.setName(mapping.name());
+            mappedEx.setExternalExerciseId(mapping.externalExerciseId());
+            mappedEx.setIsSystem(true);
+            mappedEx.setUser(null);
+            mappedEx.setBodyCategory(mapping.bodyCategory());
+            mappedEx.setEquipmentCategory(mapping.equipmentCategory());
+            mappedEx.setTargetMuscle(mapping.targetMuscle());
+            mappedEx.setSecondaryMuscles(mapping.secondaryMuscles() != null ? mapping.secondaryMuscles() : List.of());
+            mappedEx.setInstructions(mapping.instructions() != null ? mapping.instructions() : List.of());
+            mappedEx.setGifUrl(mapping.gifUrl());
+            mappedEx = exerciseRepository.save(mappedEx);
+            cache.put(cacheKey, mappedEx);
+            return mappedEx;
+        }
+
+        // 2. Check by template ID if present
         if (templateId != null) {
             Optional<Exercise> byTpl = exerciseRepository.findByExternalExerciseId(templateId);
             if (byTpl.isPresent()) {
@@ -189,7 +230,7 @@ public class HevyImportService {
             }
         }
 
-        // 2. Check by exact name for user or system
+        // 3. Check by exact name for user or system
         List<Exercise> byName = exerciseRepository.findAvailableExercisesByName(user.getId(), title);
         if (!byName.isEmpty()) {
             Exercise found = byName.get(0);
@@ -197,7 +238,7 @@ public class HevyImportService {
             return found;
         }
 
-        // 3. Check by normalized alias: "Deadlift (Barbell)" -> "barbell deadlift"
+        // 4. Check by normalized alias: "Deadlift (Barbell)" -> "barbell deadlift"
         String alias = normalizeExerciseAlias(title);
         if (alias != null) {
             List<Exercise> byAlias = exerciseRepository.findAvailableExercisesByName(user.getId(), alias);
@@ -208,7 +249,7 @@ public class HevyImportService {
             }
         }
 
-        // 4. Create new Exercise for user
+        // 5. Create new Exercise for user (standalone fallback for uncataloged exercises)
         Exercise newEx = new Exercise();
         newEx.setName(title);
         newEx.setExternalExerciseId(templateId);

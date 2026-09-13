@@ -1,11 +1,12 @@
 package top.productivitytools.fitness.api.dto.external;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record ExerciseDbSearchResponse(
-    boolean success,
-    ExerciseDbMeta meta,
-    List<ExerciseDbItem> data
+public record ExerciseDbMeta(
+    Integer total,
+    Boolean hasNextPage,
+    Boolean hasPreviousPage,
+    String nextCursor,
+    String previousCursor
 ) {}

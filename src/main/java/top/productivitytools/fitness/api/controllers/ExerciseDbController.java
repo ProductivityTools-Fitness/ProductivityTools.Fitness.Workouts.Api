@@ -20,7 +20,7 @@ public class ExerciseDbController {
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String bodyCategory,
             @RequestParam(required = false) String equipmentCategory,
-            @RequestParam(required = false, defaultValue = "10") Integer limit) {
+            @RequestParam(required = false, defaultValue = "50") Integer limit) {
         return exerciseDbService.searchExercises(name, bodyCategory, equipmentCategory, limit);
     }
 

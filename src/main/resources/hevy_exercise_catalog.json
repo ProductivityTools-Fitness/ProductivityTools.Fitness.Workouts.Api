@@ -1,0 +1,1358 @@
+[
+  {
+    "hevyTitle": "Bench Press (Barbell)",
+    "hevyPlTitle": "Wyciskanie leżąc (sztanga)",
+    "name": "barbell bench press",
+    "externalExerciseId": "EIeI8Vf",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "chest",
+    "targetMuscle": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
+      "Step:2 Grasp the barbell with an overhand grip slightly wider than shoulder-width apart.",
+      "Step:3 Lift the barbell off the rack and hold it directly above your chest with your arms fully extended.",
+      "Step:4 Lower the barbell slowly towards your chest, keeping your elbows tucked in.",
+      "Step:5 Pause for a moment when the barbell touches your chest.",
+      "Step:6 Push the barbell back up to the starting position by extending your arms.",
+      "Step:7 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/EIeI8Vf.gif"
+  },
+  {
+    "hevyTitle": "Incline Bench Press (Barbell)",
+    "hevyPlTitle": "Wyciskanie na ławce skośnej (sztanga)",
+    "name": "barbell incline bench press",
+    "externalExerciseId": "3TZduzM",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "chest",
+    "targetMuscle": "pectorals",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "instructions": [
+      "Step:1 Set up an incline bench at a 45-degree angle.",
+      "Step:2 Lie down on the bench with your feet flat on the ground.",
+      "Step:3 Grasp the barbell with an overhand grip, slightly wider than shoulder-width apart.",
+      "Step:4 Unrack the barbell and lower it slowly towards your chest, keeping your elbows at a 45-degree angle.",
+      "Step:5 Pause for a moment at the bottom, then push the barbell back up to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/3TZduzM.gif"
+  },
+  {
+    "hevyTitle": "Decline Bench Press (Barbell)",
+    "hevyPlTitle": "Wyciskanie na ławce ujemnej (sztanga)",
+    "name": "barbell decline bench press",
+    "externalExerciseId": "GrO65fd",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "chest",
+    "targetMuscle": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Lie on a decline bench with your feet secured and your head lower than your hips.",
+      "Step:2 Grasp the barbell with an overhand grip slightly wider than shoulder-width apart.",
+      "Step:3 Unrack the barbell and lower it slowly towards your chest, keeping your elbows tucked in.",
+      "Step:4 Pause for a moment at the bottom, then push the barbell back up to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/GrO65fd.gif"
+  },
+  {
+    "hevyTitle": "Incline Bench Press (Dumbbell)",
+    "hevyPlTitle": "Wyciskanie na ławce skośnej (hantle)",
+    "name": "dumbbell incline bench press",
+    "externalExerciseId": "ns0SIbU",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "chest",
+    "targetMuscle": "pectorals",
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "instructions": [
+      "Step:1 Set up an incline bench at a 45-degree angle.",
+      "Step:2 Sit on the bench with your feet flat on the ground and your back pressed firmly against the bench.",
+      "Step:3 Hold a dumbbell in each hand, palms facing forward, and lift them to shoulder height.",
+      "Step:4 Slowly lower the dumbbells to the sides of your chest, keeping your elbows at a 90-degree angle.",
+      "Step:5 Push the dumbbells back up to the starting position, fully extending your arms.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/ns0SIbU.gif"
+  },
+  {
+    "hevyTitle": "Chest Press (Machine)",
+    "hevyPlTitle": "Wyciskanie na klatkę (maszyna)",
+    "name": "lever chest press",
+    "externalExerciseId": "DOoWcnA",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "chest",
+    "targetMuscle": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and position yourself on the machine with your back flat against the pad.",
+      "Step:2 Grasp the handles with an overhand grip and position your elbows at a 90-degree angle.",
+      "Step:3 Push the handles forward until your arms are fully extended, exhaling during the movement.",
+      "Step:4 Pause briefly at the end of the movement, then slowly return to the starting position, inhaling as you do so.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/DOoWcnA.gif"
+  },
+  {
+    "hevyTitle": "Squat (Barbell)",
+    "hevyPlTitle": "Przysiad ze sztangą",
+    "name": "barbell full squat",
+    "externalExerciseId": "qXTaZnJ",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "glutes",
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves",
+      "core"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, toes slightly turned out.",
+      "Step:2 Hold the barbell across your upper back, resting it on your traps or rear delts.",
+      "Step:3 Engage your core and keep your chest up as you begin to lower your body down.",
+      "Step:4 Bend at the knees and hips, pushing your hips back and down as if sitting into a chair.",
+      "Step:5 Lower yourself until your thighs are parallel to the ground or slightly below.",
+      "Step:6 Keep your knees in line with your toes and your weight in your heels.",
+      "Step:7 Drive through your heels to stand back up, extending your hips and knees.",
+      "Step:8 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/qXTaZnJ.gif"
+  },
+  {
+    "hevyTitle": "Sumo Squat (Dumbbell)",
+    "hevyPlTitle": "Przysiad sumo z hantlą",
+    "name": "dumbbell goblet squat",
+    "externalExerciseId": "yn8yg1r",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "quads",
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a dumbbell vertically against your chest with both hands.",
+      "Step:2 Keeping your chest up and core engaged, lower your body down into a squat position by pushing your hips back and bending your knees.",
+      "Step:3 Continue lowering until your thighs are parallel to the ground, or as low as you can comfortably go.",
+      "Step:4 Pause for a moment at the bottom, then push through your heels to return to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/yn8yg1r.gif"
+  },
+  {
+    "hevyTitle": "Bulgarian Split Squat (Dumbbell)",
+    "hevyPlTitle": "Przysiad bułgarski (hantle)",
+    "name": "dumbbell single leg split squat",
+    "externalExerciseId": "qx4fgX7",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "quads",
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a dumbbell in each hand.",
+      "Step:2 Take a step forward with one foot and position your feet so that your front foot is flat on the ground and your back foot is elevated on a bench or step.",
+      "Step:3 Lower your body by bending your front knee and hip, keeping your back knee slightly bent and your back heel off the ground.",
+      "Step:4 Continue lowering until your front thigh is parallel to the ground, then push through your front heel to return to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions, then switch legs and repeat."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/qx4fgX7.gif"
+  },
+  {
+    "hevyTitle": "Leg Press Horizontal (Machine)",
+    "hevyPlTitle": "Wyciskanie nogami poziome (maszyna)",
+    "name": "lever horizontal one leg press",
+    "externalExerciseId": "9KU9TYF",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "glutes",
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat of the machine so that your knees are at a 90-degree angle when your feet are on the footplate.",
+      "Step:2 Sit on the machine with your back against the backrest and your feet shoulder-width apart on the footplate.",
+      "Step:3 Place your hands on the handles or sides of the machine for stability.",
+      "Step:4 Push the footplate away from your body by extending your leg, keeping your back against the backrest.",
+      "Step:5 Pause for a moment at the fully extended position, then slowly bend your leg to return to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions, then switch legs."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/9KU9TYF.gif"
+  },
+  {
+    "hevyTitle": "Leg Extension (Machine)",
+    "hevyPlTitle": "Prostowanie nóg (maszyna)",
+    "name": "lever leg extension",
+    "externalExerciseId": "my33uHU",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "quads",
+    "secondaryMuscles": [
+      "hamstrings"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and backrest of the machine to fit your body.",
+      "Step:2 Sit on the machine with your back against the backrest and your feet on the footpad.",
+      "Step:3 Grasp the handles or sidebars for stability.",
+      "Step:4 Extend your legs forward by straightening your knees, lifting the weight.",
+      "Step:5 Pause for a moment at the top, then slowly lower the weight back to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/my33uHU.gif"
+  },
+  {
+    "hevyTitle": "Calf Press (Machine)",
+    "hevyPlTitle": "Wspięcia na palce na suwnicy",
+    "name": "lever calf press",
+    "externalExerciseId": "7B4F5nZ",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "lower legs",
+    "targetMuscle": "calves",
+    "secondaryMuscles": [
+      "hamstrings"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat of the leverage machine so that your shoulders are aligned with the lever pad.",
+      "Step:2 Place your toes on the lever pad, with your heels hanging off the edge.",
+      "Step:3 Grasp the handles or side supports for stability.",
+      "Step:4 Push the lever pad down by extending your ankles, contracting your calf muscles.",
+      "Step:5 Pause for a moment at the bottom of the movement.",
+      "Step:6 Slowly return to the starting position by allowing your heels to rise back up.",
+      "Step:7 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/7B4F5nZ.gif"
+  },
+  {
+    "hevyTitle": "Seated Calf Raise",
+    "hevyPlTitle": "Wspięcia na palce siedząc (maszyna)",
+    "name": "lever seated calf raise",
+    "externalExerciseId": "bOOdeyc",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "lower legs",
+    "targetMuscle": "calves",
+    "secondaryMuscles": [
+      "soleus",
+      "ankle stabilizers"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height so that your knees are slightly bent and your feet are flat on the footplate.",
+      "Step:2 Place your toes on the footplate with your heels hanging off the edge.",
+      "Step:3 Grasp the handles or the sides of the seat for stability.",
+      "Step:4 Push through the balls of your feet to raise your heels as high as possible.",
+      "Step:5 Pause for a moment at the top, then slowly lower your heels back down to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/bOOdeyc.gif"
+  },
+  {
+    "hevyTitle": "Standing Calf Raise (Dumbbell)",
+    "hevyPlTitle": "Wspięcia na palce stojąc z hantlą",
+    "name": "dumbbell standing calf raise",
+    "externalExerciseId": "dPmaUaU",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "lower legs",
+    "targetMuscle": "calves",
+    "secondaryMuscles": [
+      "ankles"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a dumbbell in each hand.",
+      "Step:2 Raise your heels off the ground as high as possible, using your calves.",
+      "Step:3 Pause for a moment at the top, then slowly lower your heels back down to the starting position.",
+      "Step:4 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/dPmaUaU.gif"
+  },
+  {
+    "hevyTitle": "Wall Sit",
+    "hevyPlTitle": "Krzesełko przy ścianie",
+    "name": "march sit (wall)",
+    "externalExerciseId": "sVQCCeG",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "glutes",
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Step:1 Stand with your back against a wall and your feet hip-width apart.",
+      "Step:2 Slowly slide your back down the wall until your knees are bent at a 90-degree angle.",
+      "Step:3 Lift your right foot off the ground and bring your knee towards your chest.",
+      "Step:4 Lower your right foot back down and lift your left foot off the ground, bringing your knee towards your chest.",
+      "Step:5 Continue alternating between lifting your right and left foot for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/sVQCCeG.gif"
+  },
+  {
+    "hevyTitle": "Box Jump",
+    "hevyPlTitle": "Wskoki na skrzynię",
+    "name": "box jump down with one leg stabilization",
+    "externalExerciseId": "iPm26QU",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "lower legs",
+    "targetMuscle": "calves",
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "glutes"
+    ],
+    "instructions": [
+      "Step:1 Stand in front of a box or platform with your feet shoulder-width apart.",
+      "Step:2 Bend your knees and jump onto the box, landing softly with one foot on the box and the other foot hanging off the edge.",
+      "Step:3 Stabilize yourself on the box with the foot that is on it, while keeping the other foot off the ground.",
+      "Step:4 Hold this position for a few seconds, engaging your calf muscles to maintain balance.",
+      "Step:5 Slowly step down with the foot that is on the box, returning to the starting position.",
+      "Step:6 Repeat the exercise with the other leg."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/iPm26QU.gif"
+  },
+  {
+    "hevyTitle": "Hip Adduction (Machine)",
+    "hevyPlTitle": "Przywodzenie nóg (maszyna)",
+    "name": "lever seated hip adduction",
+    "externalExerciseId": "oHsrypV",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "adductors",
+    "secondaryMuscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and position yourself on the machine with your back against the backrest.",
+      "Step:2 Place your feet on the footrests and grasp the handles for stability.",
+      "Step:3 Engage your adductor muscles and slowly bring your legs together, squeezing your inner thighs.",
+      "Step:4 Pause for a moment at the peak contraction, then slowly return to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/oHsrypV.gif"
+  },
+  {
+    "hevyTitle": "Hip Thrust (Barbell)",
+    "hevyPlTitle": "Hip thrust (sztanga)",
+    "name": "barbell glute bridge two legs on bench (male)",
+    "externalExerciseId": "qg2PGl6",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "glutes",
+    "secondaryMuscles": [
+      "hamstrings",
+      "core"
+    ],
+    "instructions": [
+      "Step:1 Start by sitting on the edge of a bench with your upper back resting against it and your feet flat on the ground, hip-width apart.",
+      "Step:2 Place a barbell across your hips, holding it securely with both hands.",
+      "Step:3 Engage your glutes and core muscles, then press through your heels to lift your hips off the bench, creating a straight line from your knees to your shoulders.",
+      "Step:4 Pause for a moment at the top, squeezing your glutes.",
+      "Step:5 Slowly lower your hips back down to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/qg2PGl6.gif"
+  },
+  {
+    "hevyTitle": "Deadlift (Barbell)",
+    "hevyPlTitle": "Martwy ciąg (sztanga)",
+    "name": "barbell deadlift",
+    "externalExerciseId": "ila4NZS",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "glutes",
+    "secondaryMuscles": [
+      "hamstrings",
+      "lower back"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart and the barbell on the ground in front of you.",
+      "Step:2 Bend your knees and hinge at the hips to lower your torso and grip the barbell with an overhand grip, hands slightly wider than shoulder-width apart.",
+      "Step:3 Keep your back straight and chest lifted as you drive through your heels to lift the barbell off the ground, extending your hips and knees.",
+      "Step:4 As you stand up straight, squeeze your glutes and keep your core engaged.",
+      "Step:5 Lower the barbell back down to the ground by bending at the hips and knees, keeping your back straight.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/ila4NZS.gif"
+  },
+  {
+    "hevyTitle": "Deadlift (Dumbbell)",
+    "hevyPlTitle": "Martwy ciąg (hantle)",
+    "name": "dumbbell deadlift",
+    "externalExerciseId": "nUwVh7b",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "upper legs",
+    "targetMuscle": "glutes",
+    "secondaryMuscles": [
+      "hamstrings",
+      "lower back"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, toes pointing forward.",
+      "Step:2 Hold a dumbbell in each hand, palms facing your body, arms extended downwards.",
+      "Step:3 Bend at your hips and knees, lowering the dumbbells towards the ground while keeping your back straight.",
+      "Step:4 Push through your heels and extend your hips and knees, lifting the dumbbells back up to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/nUwVh7b.gif"
+  },
+  {
+    "hevyTitle": "Bent Over Row (Barbell)",
+    "hevyPlTitle": "Wiosłowanie w opadzie (sztanga)",
+    "name": "barbell bent over row",
+    "externalExerciseId": "eZyBC3j",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart and knees slightly bent.",
+      "Step:2 Bend forward at the hips while keeping your back straight and chest up.",
+      "Step:3 Grasp the barbell with an overhand grip, hands slightly wider than shoulder-width apart.",
+      "Step:4 Pull the barbell towards your lower chest by retracting your shoulder blades and squeezing your back muscles.",
+      "Step:5 Pause for a moment at the top, then slowly lower the barbell back to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/eZyBC3j.gif"
+  },
+  {
+    "hevyTitle": "Bent Over Row (Dumbbell)",
+    "hevyPlTitle": "Wiosłowanie w opadzie (hantle)",
+    "name": "dumbbell bent over row",
+    "externalExerciseId": "BJ0Hz5L",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, knees slightly bent, and hold a dumbbell in each hand with your palms facing your body.",
+      "Step:2 Bend forward at the hips, keeping your back straight and your core engaged.",
+      "Step:3 Let your arms hang straight down towards the floor, with your elbows slightly bent.",
+      "Step:4 Pull the dumbbells up towards your chest, squeezing your shoulder blades together.",
+      "Step:5 Pause for a moment at the top, then slowly lower the dumbbells back down to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/BJ0Hz5L.gif"
+  },
+  {
+    "hevyTitle": "Dumbbell Row",
+    "hevyPlTitle": "Wiosłowanie jednorącz w podporze (hantla)",
+    "name": "dumbbell one arm bent-over row",
+    "externalExerciseId": "C0MA9bC",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a dumbbell in one hand with your palm facing your body.",
+      "Step:2 Bend your knees slightly and hinge forward at the hips, keeping your back straight and your core engaged.",
+      "Step:3 Let the dumbbell hang straight down towards the floor, with your arm fully extended.",
+      "Step:4 Pull the dumbbell up towards your chest, keeping your elbow close to your body and squeezing your shoulder blades together.",
+      "Step:5 Pause for a moment at the top, then slowly lower the dumbbell back down to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions, then switch sides."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/C0MA9bC.gif"
+  },
+  {
+    "hevyTitle": "Seated Row (Machine)",
+    "hevyPlTitle": "Wiosłowanie siedząc (maszyna)",
+    "name": "lever seated row",
+    "externalExerciseId": "7I6LNUG",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and footrests to a comfortable position.",
+      "Step:2 Sit on the machine with your chest against the pad and your feet on the footrests.",
+      "Step:3 Grasp the handles with an overhand grip, shoulder-width apart.",
+      "Step:4 Keep your back straight and your core engaged.",
+      "Step:5 Pull the handles towards your body, squeezing your shoulder blades together.",
+      "Step:6 Pause for a moment at the peak of the movement.",
+      "Step:7 Slowly release the handles and return to the starting position.",
+      "Step:8 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/7I6LNUG.gif"
+  },
+  {
+    "hevyTitle": "Seated Cable Row - V Grip (Cable)",
+    "hevyPlTitle": "Wiosłowanie siedząc na wyciągu (uchwyt V)",
+    "name": "cable seated row",
+    "externalExerciseId": "fUBheHs",
+    "equipmentCategory": "cable",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Sit on the cable row machine with your feet flat on the footrests and your knees slightly bent.",
+      "Step:2 Grasp the handles with an overhand grip, keeping your back straight and your shoulders relaxed.",
+      "Step:3 Pull the handles towards your body, squeezing your shoulder blades together.",
+      "Step:4 Pause for a moment at the peak of the movement, then slowly release the handles back to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/fUBheHs.gif"
+  },
+  {
+    "hevyTitle": "Seated Cable Row - Bar Grip",
+    "hevyPlTitle": "Wiosłowanie siedząc na wyciągu (drążek)",
+    "name": "cable seated wide-grip row",
+    "externalExerciseId": "qcY50ZD",
+    "equipmentCategory": "cable",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Sit on the cable row machine with your feet flat on the footrests and your knees slightly bent.",
+      "Step:2 Grasp the handle with a wide overhand grip, palms facing down.",
+      "Step:3 Keep your back straight and lean slightly forward from the hips.",
+      "Step:4 Pull the handle towards your lower chest, squeezing your shoulder blades together.",
+      "Step:5 Pause for a moment at the peak of the contraction.",
+      "Step:6 Slowly release the handle back to the starting position, fully extending your arms.",
+      "Step:7 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/qcY50ZD.gif"
+  },
+  {
+    "hevyTitle": "Iso-Lateral Row (Machine)",
+    "hevyPlTitle": "Wiosłowanie jednorącz (maszyna)",
+    "name": "lever unilateral row",
+    "externalExerciseId": "oROuvrX",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and position yourself facing the machine.",
+      "Step:2 Grasp the handles with an overhand grip and keep your back straight.",
+      "Step:3 Pull the handles towards your body, squeezing your shoulder blades together.",
+      "Step:4 Pause for a moment at the peak of the movement, then slowly release and extend your arms back to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/oROuvrX.gif"
+  },
+  {
+    "hevyTitle": "Iso-Lateral High Row (Machine)",
+    "hevyPlTitle": "Wiosłowanie górne jednorącz (maszyna)",
+    "name": "lever one arm lateral high row",
+    "externalExerciseId": "OIFMAp1",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and position yourself facing the machine.",
+      "Step:2 Grasp the handle with one hand and keep your back straight.",
+      "Step:3 Pull the handle towards your body, keeping your elbow close to your side.",
+      "Step:4 Squeeze your back muscles at the top of the movement.",
+      "Step:5 Slowly release the handle back to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/OIFMAp1.gif"
+  },
+  {
+    "hevyTitle": "Lat Pulldown (Cable)",
+    "hevyPlTitle": "Ściąganie drążka wyciągu górnego",
+    "name": "cable pulldown",
+    "externalExerciseId": "RVwzP10",
+    "equipmentCategory": "cable",
+    "bodyCategory": "back",
+    "targetMuscle": "lats",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Adjust the cable pulldown machine so that the seat is at a comfortable height and the knee pad is secured.",
+      "Step:2 Sit on the seat with your back straight and your feet flat on the ground.",
+      "Step:3 Grasp the cable bar with an overhand grip, slightly wider than shoulder-width apart.",
+      "Step:4 Lean back slightly and engage your core.",
+      "Step:5 Pull the cable bar down towards your chest, squeezing your shoulder blades together.",
+      "Step:6 Pause for a moment at the bottom of the movement, then slowly release the bar back to the starting position.",
+      "Step:7 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/RVwzP10.gif"
+  },
+  {
+    "hevyTitle": "Lat Pulldown (Machine)",
+    "hevyPlTitle": "Ściąganie drążka (maszyna)",
+    "name": "lever front pulldown",
+    "externalExerciseId": "7F1DVzn",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "back",
+    "targetMuscle": "lats",
+    "secondaryMuscles": [
+      "biceps",
+      "rhomboids",
+      "rear deltoids"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and position yourself on the machine with your knees under the pads and your feet flat on the ground.",
+      "Step:2 Grasp the handles with an overhand grip, slightly wider than shoulder-width apart.",
+      "Step:3 Sit upright with your chest lifted and your shoulders back, maintaining a slight arch in your lower back.",
+      "Step:4 Engage your lats and pull the handles down towards your chest, squeezing your shoulder blades together.",
+      "Step:5 Pause for a moment at the bottom of the movement, then slowly release the handles back to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/7F1DVzn.gif"
+  },
+  {
+    "hevyTitle": "Pull Up",
+    "hevyPlTitle": "Podciąganie",
+    "name": "pull-up",
+    "externalExerciseId": "lBDjFxJ",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "back",
+    "targetMuscle": "lats",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Hang from a pull-up bar with your palms facing away from you and your arms fully extended.",
+      "Step:2 Engage your core and squeeze your shoulder blades together.",
+      "Step:3 Pull your body up towards the bar by bending your elbows and bringing your chest towards the bar.",
+      "Step:4 Pause at the top of the movement, then slowly lower your body back down to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/lBDjFxJ.gif"
+  },
+  {
+    "hevyTitle": "Pullover (Dumbbell)",
+    "hevyPlTitle": "Pullover (hantla)",
+    "name": "dumbbell pullover",
+    "externalExerciseId": "9XjtHvS",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "chest",
+    "targetMuscle": "pectorals",
+    "secondaryMuscles": [
+      "latissimus dorsi",
+      "triceps"
+    ],
+    "instructions": [
+      "Step:1 Lie flat on a bench with your head at one end and your feet on the floor.",
+      "Step:2 Hold a dumbbell with both hands and extend your arms straight above your chest.",
+      "Step:3 Keeping a slight bend in your elbows, slowly lower the dumbbell behind your head until you feel a stretch in your chest and shoulders.",
+      "Step:4 Pause for a moment, then raise the dumbbell back to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/9XjtHvS.gif"
+  },
+  {
+    "hevyTitle": "Renegade Row (Dumbbell)",
+    "hevyPlTitle": "Renegade row (hantle)",
+    "name": "kettlebell alternating renegade row",
+    "externalExerciseId": "b9kqlBy",
+    "equipmentCategory": "kettlebell",
+    "bodyCategory": "back",
+    "targetMuscle": "upper back",
+    "secondaryMuscles": [
+      "core",
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Start in a high plank position with your hands gripping the kettlebells and your feet hip-width apart.",
+      "Step:2 Engage your core and keep your body in a straight line from head to heels.",
+      "Step:3 Pull one kettlebell up towards your chest, keeping your elbow close to your body.",
+      "Step:4 Lower the kettlebell back down to the starting position and repeat with the other arm.",
+      "Step:5 Continue alternating arms for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/b9kqlBy.gif"
+  },
+  {
+    "hevyTitle": "Overhead Press (Barbell)",
+    "hevyPlTitle": "Wyciskanie żołnierskie (sztanga)",
+    "name": "barbell seated overhead press",
+    "externalExerciseId": "kTbSH9h",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "triceps",
+      "upper back"
+    ],
+    "instructions": [
+      "Step:1 Sit on a bench with your back straight and feet flat on the ground.",
+      "Step:2 Hold the barbell with an overhand grip, slightly wider than shoulder-width apart.",
+      "Step:3 Lift the barbell off the rack and bring it to shoulder level, with your elbows bent and palms facing forward.",
+      "Step:4 Press the barbell overhead by extending your arms fully.",
+      "Step:5 Pause for a moment at the top, then slowly lower the barbell back to shoulder level.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/kTbSH9h.gif"
+  },
+  {
+    "hevyTitle": "Overhead Press (Dumbbell)",
+    "hevyPlTitle": "Wyciskanie żołnierskie (hantle)",
+    "name": "barbell standing bradford press",
+    "externalExerciseId": "dCPESfR",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "triceps",
+      "upper back"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart and hold the barbell in front of your shoulders with an overhand grip.",
+      "Step:2 Press the barbell overhead, fully extending your arms.",
+      "Step:3 Lower the barbell back down to the starting position.",
+      "Step:4 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/dCPESfR.gif"
+  },
+  {
+    "hevyTitle": "Arnold Press (Dumbbell)",
+    "hevyPlTitle": "Wyciskanie Arnolda (hantle)",
+    "name": "dumbbell arnold press",
+    "externalExerciseId": "Xy4jlWA",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "triceps",
+      "upper chest"
+    ],
+    "instructions": [
+      "Step:1 Sit on a bench with back support and hold a dumbbell in each hand at shoulder level, palms facing your body and elbows bent.",
+      "Step:2 Press the dumbbells upward until your arms are fully extended and your palms are facing forward.",
+      "Step:3 Rotate your wrists as you lift, so that your palms are facing forward at the top of the movement.",
+      "Step:4 Pause for a moment at the top, then slowly lower the dumbbells back to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/Xy4jlWA.gif"
+  },
+  {
+    "hevyTitle": "Front Raise (Barbell)",
+    "hevyPlTitle": "Wznosy ramion przodem (sztanga)",
+    "name": "barbell front raise",
+    "externalExerciseId": "b2Uoz54",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "biceps",
+      "triceps"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart and hold a barbell in front of your thighs with an overhand grip.",
+      "Step:2 Keep your arms straight and lift the barbell forward and upward until it reaches shoulder level.",
+      "Step:3 Pause for a moment at the top, then slowly lower the barbell back down to the starting position.",
+      "Step:4 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/b2Uoz54.gif"
+  },
+  {
+    "hevyTitle": "Front Raise (Dumbbell)",
+    "hevyPlTitle": "Wznosy ramion przodem (hantle)",
+    "name": "dumbbell front raise",
+    "externalExerciseId": "3eGE2JC",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "biceps",
+      "trapezius"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing your thighs.",
+      "Step:2 Keeping your arms straight, exhale and lift the dumbbells in front of you until they are at shoulder level.",
+      "Step:3 Pause for a moment at the top, then inhale and slowly lower the dumbbells back down to the starting position.",
+      "Step:4 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/3eGE2JC.gif"
+  },
+  {
+    "hevyTitle": "Plate Front Raise",
+    "hevyPlTitle": "Wznosy talerza przodem",
+    "name": "weighted front raise",
+    "externalExerciseId": "e4aFmFY",
+    "equipmentCategory": "weighted",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing your thighs.",
+      "Step:2 Keeping your arms straight, exhale and lift the dumbbells in front of you until they are at shoulder level.",
+      "Step:3 Pause for a moment at the top, then inhale and slowly lower the dumbbells back down to the starting position.",
+      "Step:4 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/e4aFmFY.gif"
+  },
+  {
+    "hevyTitle": "Single Arm Lateral Raise (Cable)",
+    "hevyPlTitle": "Wznosy bokiem jednorącz (wyciąg)",
+    "name": "cable one arm lateral raise",
+    "externalExerciseId": "wEulIzp",
+    "equipmentCategory": "cable",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "traps",
+      "triceps"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, facing the cable machine.",
+      "Step:2 Hold the cable handle with one hand, palm facing down, and stand far enough away from the machine so that there is tension on the cable.",
+      "Step:3 Keep your arm straight and slowly raise it out to the side until it is parallel to the ground.",
+      "Step:4 Pause for a moment at the top, then slowly lower your arm back down to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions, then switch sides."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/wEulIzp.gif"
+  },
+  {
+    "hevyTitle": "Shoulder Press (Machine Plates)",
+    "hevyPlTitle": "Wyciskanie nad głowę (maszyna na talerze)",
+    "name": "lever shoulder press",
+    "externalExerciseId": "67n3r98",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "triceps",
+      "chest"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height and position yourself on the machine with your back against the backrest.",
+      "Step:2 Grasp the handles with an overhand grip and position your hands at shoulder level.",
+      "Step:3 Push the handles upward until your arms are fully extended, but do not lock your elbows.",
+      "Step:4 Pause for a moment at the top, then slowly lower the handles back down to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/67n3r98.gif"
+  },
+  {
+    "hevyTitle": "Bicep Curl (Barbell)",
+    "hevyPlTitle": "Uginanie ramion (sztanga)",
+    "name": "barbell curl",
+    "externalExerciseId": "25GPyDY",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand up straight with your feet shoulder-width apart and hold a barbell with an underhand grip, palms facing forward.",
+      "Step:2 Keep your elbows close to your torso and exhale as you curl the weights while contracting your biceps.",
+      "Step:3 Continue to raise the bar until your biceps are fully contracted and the bar is at shoulder level.",
+      "Step:4 Hold the contracted position for a brief pause as you squeeze your biceps.",
+      "Step:5 Inhale as you slowly begin to lower the bar back to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/25GPyDY.gif"
+  },
+  {
+    "hevyTitle": "Bicep Curl (Dumbbell)",
+    "hevyPlTitle": "Uginanie ramion (hantle)",
+    "name": "dumbbell biceps curl",
+    "externalExerciseId": "NbVPDMW",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand up straight with a dumbbell in each hand, palms facing forward and arms fully extended.",
+      "Step:2 Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps.",
+      "Step:3 Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level.",
+      "Step:4 Hold the contracted position for a brief pause as you squeeze your biceps.",
+      "Step:5 Inhale and slowly begin to lower the dumbbells back to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/NbVPDMW.gif"
+  },
+  {
+    "hevyTitle": "Hammer Curl (Dumbbell)",
+    "hevyPlTitle": "Uginanie ramion młotkowe (hantle)",
+    "name": "dumbbell hammer curl",
+    "externalExerciseId": "slDvUAU",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand up straight with a dumbbell in each hand, palms facing your torso.",
+      "Step:2 Keep your elbows close to your torso and rotate the palms of your hands until they are facing forward.",
+      "Step:3 This will be your starting position.",
+      "Step:4 Now, keeping the upper arms stationary, exhale and curl the weights while contracting your biceps.",
+      "Step:5 Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level.",
+      "Step:6 Hold the contracted position for a brief pause as you squeeze your biceps.",
+      "Step:7 Then, inhale and slowly begin to lower the dumbbells back to the starting position.",
+      "Step:8 Repeat for the recommended amount of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/slDvUAU.gif"
+  },
+  {
+    "hevyTitle": "EZ Bar Biceps Curl",
+    "hevyPlTitle": "Uginanie ramion (sztanga łamana)",
+    "name": "ez barbell curl",
+    "externalExerciseId": "6TG6x2w",
+    "equipmentCategory": "ez barbell",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand up straight with your feet shoulder-width apart and hold the ez barbell with an underhand grip, palms facing up.",
+      "Step:2 Keep your elbows close to your torso and your upper arms stationary throughout the movement.",
+      "Step:3 Exhale as you curl the barbell up towards your shoulders, contracting your biceps.",
+      "Step:4 Pause for a moment at the top, then inhale as you slowly lower the barbell back down to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/6TG6x2w.gif"
+  },
+  {
+    "hevyTitle": "Preacher Curl (Barbell)",
+    "hevyPlTitle": "Uginanie ramion na modlitewniku (sztanga)",
+    "name": "barbell preacher curl",
+    "externalExerciseId": "qOgPVf6",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Sit on a preacher bench with your upper arms resting on the pad and your chest against the support.",
+      "Step:2 Grasp the barbell with an underhand grip, slightly wider than shoulder-width apart.",
+      "Step:3 Keeping your upper arms stationary, exhale and curl the barbell up towards your shoulders.",
+      "Step:4 Pause for a moment at the top, squeezing your biceps.",
+      "Step:5 Inhale and slowly lower the barbell back down to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/qOgPVf6.gif"
+  },
+  {
+    "hevyTitle": "Pinwheel Curl (Dumbbell)",
+    "hevyPlTitle": "Uginanie hantli w poprzek ciała (pinwheel curl)",
+    "name": "dumbbell cross body hammer curl",
+    "externalExerciseId": "Qyk5J3p",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand up straight with a dumbbell in each hand, palms facing your body.",
+      "Step:2 Keep your elbows close to your torso and your upper arms stationary.",
+      "Step:3 Exhale and curl the weights while contracting your biceps, bringing the dumbbells across your body towards your opposite shoulder.",
+      "Step:4 Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
+      "Step:5 Hold the contracted position for a brief pause as you squeeze your biceps.",
+      "Step:6 Inhale and slowly begin to lower the dumbbells back to the starting position.",
+      "Step:7 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/Qyk5J3p.gif"
+  },
+  {
+    "hevyTitle": "Triceps Pushdown",
+    "hevyPlTitle": "Prostowanie ramion na wyciągu górnym (pushdown)",
+    "name": "cable pushdown",
+    "externalExerciseId": "3ZflifB",
+    "equipmentCategory": "cable",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "triceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Attach a straight bar to a high pulley cable machine.",
+      "Step:2 Stand facing the machine with your feet shoulder-width apart and a slight bend in your knees.",
+      "Step:3 Grasp the bar with an overhand grip, hands shoulder-width apart.",
+      "Step:4 Keep your elbows close to your sides and your upper arms stationary.",
+      "Step:5 Exhale and push the bar down until your elbows are fully extended.",
+      "Step:6 Pause for a moment, then inhale and slowly return the bar to the starting position.",
+      "Step:7 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/3ZflifB.gif"
+  },
+  {
+    "hevyTitle": "Triceps Extension (Dumbbell)",
+    "hevyPlTitle": "Prostowanie ramion nad głową z hantlą",
+    "name": "dumbbell seated triceps extension",
+    "externalExerciseId": "kont8Ut",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "triceps",
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Sit on a bench with your back straight and feet flat on the ground.",
+      "Step:2 Hold a dumbbell with both hands and extend your arms straight up overhead.",
+      "Step:3 Bend your elbows and lower the dumbbell behind your head, keeping your upper arms close to your ears.",
+      "Step:4 Pause for a moment, then straighten your arms and return to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/kont8Ut.gif"
+  },
+  {
+    "hevyTitle": "Triceps Dip",
+    "hevyPlTitle": "Pompki na poręczach",
+    "name": "triceps dip",
+    "externalExerciseId": "X6C6i5Y",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Sit on the edge of a bench or chair with your hands gripping the edge, fingers pointing forward.",
+      "Step:2 Slide your butt off the bench, supporting your weight with your hands.",
+      "Step:3 Bend your elbows and lower your body towards the ground, keeping your back close to the bench.",
+      "Step:4 Pause for a moment at the bottom, then push yourself back up to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/X6C6i5Y.gif"
+  },
+  {
+    "hevyTitle": "Seated Triceps Press",
+    "hevyPlTitle": "Wyciskanie na triceps siedząc (maszyna)",
+    "name": "lever seated dip",
+    "externalExerciseId": "BRImeP8",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "upper arms",
+    "targetMuscle": "triceps",
+    "secondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "instructions": [
+      "Step:1 Adjust the seat height so that your feet are flat on the ground and your knees are at a 90-degree angle.",
+      "Step:2 Grasp the handles of the leverage machine with your palms facing down and your arms fully extended.",
+      "Step:3 Slowly lower your body by bending your elbows until your upper arms are parallel to the ground.",
+      "Step:4 Pause for a moment, then push yourself back up to the starting position by straightening your arms.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/BRImeP8.gif"
+  },
+  {
+    "hevyTitle": "Crunch",
+    "hevyPlTitle": "Brzuszki",
+    "name": "crunch floor",
+    "externalExerciseId": "TFqbd8t",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "hip flexors"
+    ],
+    "instructions": [
+      "Step:1 Lie flat on your back with your knees bent and feet flat on the ground.",
+      "Step:2 Place your hands behind your head with your elbows pointing outwards.",
+      "Step:3 Engage your abs and lift your shoulders off the ground, curling forward towards your knees.",
+      "Step:4 Pause for a moment at the top, then slowly lower your shoulders back down to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/TFqbd8t.gif"
+  },
+  {
+    "hevyTitle": "Crunch (Machine)",
+    "hevyPlTitle": "Brzuszki (maszyna)",
+    "name": "lever seated crunch",
+    "externalExerciseId": "Wgaz7pm",
+    "equipmentCategory": "leverage machine",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "obliques"
+    ],
+    "instructions": [
+      "Step:1 Sit on the leverage machine with your back against the pad and your feet flat on the floor.",
+      "Step:2 Grasp the handles or place your hands on the side pads for support.",
+      "Step:3 Engage your abs and slowly lean back, allowing the pad to move with you.",
+      "Step:4 Once your upper body is at a 45-degree angle, contract your abs and crunch forward, bringing your chest towards your knees.",
+      "Step:5 Pause for a moment at the top, then slowly release and return to the starting position.",
+      "Step:6 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/Wgaz7pm.gif"
+  },
+  {
+    "hevyTitle": "Cable Crunch",
+    "hevyPlTitle": "Brzuszki na wyciągu",
+    "name": "cable kneeling crunch",
+    "externalExerciseId": "WW95auq",
+    "equipmentCategory": "cable",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "obliques"
+    ],
+    "instructions": [
+      "Step:1 Attach a rope handle to a high pulley and kneel down facing away from the machine.",
+      "Step:2 Hold the rope handle with both hands and place it behind your head, keeping your elbows out to the sides.",
+      "Step:3 Keeping your hips stationary, flex your waist and crunch your torso down towards your thighs.",
+      "Step:4 Pause for a moment at the bottom, then slowly return to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/WW95auq.gif"
+  },
+  {
+    "hevyTitle": "Cable Twist (Up to down)",
+    "hevyPlTitle": "Skręty tułowia na wyciągu (z góry do dołu)",
+    "name": "cable twist (up-down)",
+    "externalExerciseId": "fhZQPlV",
+    "equipmentCategory": "cable",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "obliques",
+      "lower back"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, facing the cable machine.",
+      "Step:2 Hold the cable handle with both hands in front of your chest, keeping your arms slightly bent.",
+      "Step:3 Engage your core and slowly rotate your torso to one side, keeping your hips and legs stable.",
+      "Step:4 Pause for a moment at the end of the rotation, then slowly return to the starting position.",
+      "Step:5 Repeat the rotation to the opposite side.",
+      "Step:6 Continue alternating sides for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/fhZQPlV.gif"
+  },
+  {
+    "hevyTitle": "Hanging Leg Raise",
+    "hevyPlTitle": "Unoszenie nóg w zwisie",
+    "name": "hanging leg raise",
+    "externalExerciseId": "I3tsCnC",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "hip flexors"
+    ],
+    "instructions": [
+      "Step:1 Hang from a pull-up bar with your arms fully extended and your palms facing away from you.",
+      "Step:2 Engage your core and lift your legs up in front of you, keeping them straight.",
+      "Step:3 Continue lifting until your legs are parallel to the ground or as high as you can comfortably go.",
+      "Step:4 Pause for a moment at the top, then slowly lower your legs back down to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/I3tsCnC.gif"
+  },
+  {
+    "hevyTitle": "Lying Leg Raise",
+    "hevyPlTitle": "Unoszenie nóg leżąc",
+    "name": "lying leg raise flat bench",
+    "externalExerciseId": "WhuFnR7",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "hip flexors"
+    ],
+    "instructions": [
+      "Step:1 Lie flat on a flat bench with your back pressed against it.",
+      "Step:2 Place your hands under your glutes for support.",
+      "Step:3 Keep your legs straight and together, and lift them up towards the ceiling.",
+      "Step:4 Pause for a moment at the top, then slowly lower your legs back down to the starting position.",
+      "Step:5 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/WhuFnR7.gif"
+  },
+  {
+    "hevyTitle": "Side Bend (Dumbbell)",
+    "hevyPlTitle": "Skłony boczne (hantla)",
+    "name": "dumbbell side bend",
+    "externalExerciseId": "IpONWYv",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "obliques"
+    ],
+    "instructions": [
+      "Step:1 Stand up straight with your feet shoulder-width apart and hold a dumbbell in one hand, letting it hang down by your side.",
+      "Step:2 Keeping your back straight and your core engaged, slowly bend sideways at the waist towards the opposite side of the dumbbell, lowering the weight as far as you comfortably can.",
+      "Step:3 Pause for a moment, then slowly return to the starting position.",
+      "Step:4 Repeat for the desired number of repetitions, then switch sides and repeat."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/IpONWYv.gif"
+  },
+  {
+    "hevyTitle": "Plank",
+    "hevyPlTitle": "Deska (plank)",
+    "name": "weighted front plank",
+    "externalExerciseId": "VBAWRPG",
+    "equipmentCategory": "weighted",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "shoulders",
+      "lower back"
+    ],
+    "instructions": [
+      "Step:1 Start by lying face down on the floor.",
+      "Step:2 Place your forearms on the ground, with your elbows directly under your shoulders.",
+      "Step:3 Extend your legs straight out behind you, with your toes on the ground.",
+      "Step:4 Engage your core and lift your body off the ground, balancing on your forearms and toes.",
+      "Step:5 Keep your body in a straight line from your head to your heels.",
+      "Step:6 Hold this position for the desired amount of time.",
+      "Step:7 Lower your body back down to the starting position.",
+      "Step:8 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/VBAWRPG.gif"
+  },
+  {
+    "hevyTitle": "Landmine 180",
+    "hevyPlTitle": "Landmine 180",
+    "name": "landmine 180",
+    "externalExerciseId": "QYysSLV",
+    "equipmentCategory": "barbell",
+    "bodyCategory": "waist",
+    "targetMuscle": "abs",
+    "secondaryMuscles": [
+      "obliques",
+      "quadriceps"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart and hold the barbell with both hands in front of your chest.",
+      "Step:2 Bend your knees slightly and rotate your torso to the right, swinging the barbell down towards your right hip.",
+      "Step:3 As you reach the bottom of the movement, quickly reverse the motion and rotate your torso to the left, swinging the barbell up and across your body towards your left shoulder.",
+      "Step:4 Continue this twisting motion, alternating sides, for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/QYysSLV.gif"
+  },
+  {
+    "hevyTitle": "Running",
+    "hevyPlTitle": "Bieganie",
+    "name": "run",
+    "externalExerciseId": "oLrKqDH",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "cardio",
+    "targetMuscle": "cardiovascular system",
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Step:1 Start by standing upright with your feet hip-width apart.",
+      "Step:2 Engage your core and keep your upper body relaxed.",
+      "Step:3 Begin jogging in place, lifting your knees up towards your chest and landing softly on the balls of your feet.",
+      "Step:4 Maintain a steady pace and continue jogging for the desired duration or distance.",
+      "Step:5 Remember to breathe deeply and maintain good posture throughout the exercise."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/oLrKqDH.gif"
+  },
+  {
+    "hevyTitle": "Rowing Machine",
+    "hevyPlTitle": "Wioślarz (maszyna)",
+    "name": "Rowing Machine",
+    "externalExerciseId": null,
+    "equipmentCategory": "machine",
+    "bodyCategory": "cardio",
+    "targetMuscle": "cardio",
+    "secondaryMuscles": [],
+    "instructions": [],
+    "gifUrl": null
+  },
+  {
+    "hevyTitle": "Boxing",
+    "hevyPlTitle": "Boks",
+    "name": "left hook. boxing",
+    "externalExerciseId": "hoXt6wv",
+    "equipmentCategory": "body weight",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "biceps",
+      "triceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart and your knees slightly bent.",
+      "Step:2 Keep your left hand up to protect your face and your right hand by your chin.",
+      "Step:3 Rotate your hips and pivot on your left foot as you extend your left arm forward in a punching motion.",
+      "Step:4 Twist your torso and engage your core muscles to generate power in the punch.",
+      "Step:5 Snap your arm back to the starting position and repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/hoXt6wv.gif"
+  },
+  {
+    "hevyTitle": "Sled Push",
+    "hevyPlTitle": "Pchanie sań",
+    "name": "Sled Push",
+    "externalExerciseId": null,
+    "equipmentCategory": "other",
+    "bodyCategory": "full_body",
+    "targetMuscle": "full_body",
+    "secondaryMuscles": [],
+    "instructions": [],
+    "gifUrl": null
+  },
+  {
+    "hevyTitle": "Throwing Ball (Box)",
+    "hevyPlTitle": null,
+    "name": "medicine ball catch and overhead throw",
+    "externalExerciseId": "PsVS1QP",
+    "equipmentCategory": "medicine ball",
+    "bodyCategory": "back",
+    "targetMuscle": "lats",
+    "secondaryMuscles": [
+      "shoulders",
+      "core"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a medicine ball in both hands at chest level.",
+      "Step:2 Bend your knees slightly and engage your core.",
+      "Step:3 Lower your body into a squat position, keeping your back straight and chest up.",
+      "Step:4 Explosively extend your hips and legs, while simultaneously throwing the medicine ball overhead.",
+      "Step:5 Release the ball at the top of the movement and catch it on the way down.",
+      "Step:6 Lower your body back into the squat position and repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/PsVS1QP.gif"
+  }
+]

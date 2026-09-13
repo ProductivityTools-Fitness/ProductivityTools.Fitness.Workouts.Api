@@ -45,6 +45,9 @@ class HevyImportServiceTest {
     @Mock
     private ExerciseRepository exerciseRepository;
 
+    @Mock
+    private top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogService hevyExerciseCatalogService;
+
     @InjectMocks
     private HevyImportService hevyImportService;
 
@@ -207,6 +210,97 @@ class HevyImportServiceTest {
         verify(exerciseRepository, never()).save(any());
         verify(workoutRepository).save(argThat(w ->
                 w.getExercises().get(0).getExercise().getId().equals(2L)
+        ));
+    }
+
+    @Test
+    void importWorkouts_PreloadsExercisesAndUsesCatalogMapping_ForMappedExercise() {
+        Exercise systemBench = new Exercise();
+        systemBench.setId(10L);
+        systemBench.setName("barbell bench press");
+        systemBench.setExternalExerciseId("EIeI8Vf");
+        systemBench.setIsSystem(true);
+
+        top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem catalogItem =
+                new top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem(
+                        "Bench Press (Barbell)", "Wyciskanie leżąc (sztanga)", "barbell bench press",
+                        "EIeI8Vf", "barbell", "chest", "pectorals", List.of("triceps"), List.of(), "http://gif"
+                );
+
+        Map<String, Object> ex = Map.of(
+                "title", "Bench Press (Barbell)",
+                "sets", List.of(Map.of("weight_kg", 80.0, "reps", 8))
+        );
+        Map<String, Object> workoutData = Map.of(
+                "name", "Chest Day",
+                "start_time", 1700000000,
+                "exercises", List.of(ex)
+        );
+
+        JsonNode workoutNode = objectMapper.valueToTree(workoutData);
+
+        when(hevyClient.resolveToken("test-token")).thenReturn("test-token");
+        when(hevyClient.fetchWorkouts("test-token")).thenReturn(List.of(workoutNode));
+        when(workoutRepository.findMaxWorkoutNumberByUserId(1L)).thenReturn(0);
+        when(workoutRepository.existsByUserIdAndStartTime(eq(1L), any(OffsetDateTime.class))).thenReturn(false);
+        when(hevyExerciseCatalogService.preloadAllExercises()).thenReturn(64);
+        when(hevyExerciseCatalogService.findMapping("Bench Press (Barbell)")).thenReturn(Optional.of(catalogItem));
+        when(exerciseRepository.findByExternalExerciseId("EIeI8Vf")).thenReturn(Optional.of(systemBench));
+        when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        HevyImportRequest request = new HevyImportRequest("test-token");
+        HevyImportResponse response = hevyImportService.importWorkouts(request);
+
+        assertEquals(1, response.workoutsImported());
+        assertEquals(64, response.exercisesCreated());
+        verify(hevyExerciseCatalogService).preloadAllExercises();
+        verify(workoutRepository).save(argThat(w ->
+                w.getExercises().get(0).getExercise().getId().equals(10L) &&
+                w.getExercises().get(0).getExercise().getName().equals("barbell bench press")
+        ));
+    }
+
+    @Test
+    void importWorkouts_PreloadsExercisesAndUsesCatalogMapping_ForUnmappedStandaloneExercise() {
+        Exercise standaloneRowing = new Exercise();
+        standaloneRowing.setId(20L);
+        standaloneRowing.setName("Rowing Machine");
+        standaloneRowing.setIsSystem(true);
+
+        top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem catalogItem =
+                new top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem(
+                        "Rowing Machine", "Wioślarz (maszyna)", "Rowing Machine",
+                        null, "machine", "cardio", "cardio", List.of(), List.of(), null
+                );
+
+        Map<String, Object> ex = Map.of(
+                "title", "Rowing Machine",
+                "sets", List.of(Map.of("weight_kg", 0.0, "reps", 100))
+        );
+        Map<String, Object> workoutData = Map.of(
+                "name", "Cardio Session",
+                "start_time", 1700000000,
+                "exercises", List.of(ex)
+        );
+
+        JsonNode workoutNode = objectMapper.valueToTree(workoutData);
+
+        when(hevyClient.resolveToken("test-token")).thenReturn("test-token");
+        when(hevyClient.fetchWorkouts("test-token")).thenReturn(List.of(workoutNode));
+        when(workoutRepository.findMaxWorkoutNumberByUserId(1L)).thenReturn(0);
+        when(workoutRepository.existsByUserIdAndStartTime(eq(1L), any(OffsetDateTime.class))).thenReturn(false);
+        when(hevyExerciseCatalogService.preloadAllExercises()).thenReturn(0);
+        when(hevyExerciseCatalogService.findMapping("Rowing Machine")).thenReturn(Optional.of(catalogItem));
+        when(exerciseRepository.findAvailableExercisesByName(1L, "Rowing Machine")).thenReturn(List.of(standaloneRowing));
+        when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        HevyImportRequest request = new HevyImportRequest("test-token");
+        HevyImportResponse response = hevyImportService.importWorkouts(request);
+
+        assertEquals(1, response.workoutsImported());
+        verify(workoutRepository).save(argThat(w ->
+                w.getExercises().get(0).getExercise().getId().equals(20L) &&
+                w.getExercises().get(0).getExercise().getName().equals("Rowing Machine")
         ));
     }
 }
