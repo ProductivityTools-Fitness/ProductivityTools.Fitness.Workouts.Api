@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import top.productivitytools.fitness.api.dto.requests.AddExercisesRequest;
 import top.productivitytools.fitness.api.dto.requests.AddSetRequest;
+import top.productivitytools.fitness.api.dto.responses.WorkoutSummaryDto;
 import top.productivitytools.fitness.api.entities.*;
 import top.productivitytools.fitness.api.repositories.*;
 import top.productivitytools.fitness.api.security.UserContext;
@@ -316,5 +317,49 @@ class WorkoutServiceTest {
 
         assertEquals(HttpStatus.BAD_REQUEST, ex.getStatusCode());
         verify(workoutRepository, never()).delete(any());
+    }
+
+    @Test
+    void getAllWorkouts_ReturnsSummariesForCurrentUser() {
+        WorkoutSummaryDto dto = WorkoutSummaryDto.builder()
+                .id(100L)
+                .workoutNumber(1)
+                .userId(1L)
+                .title("Trening #1")
+                .build();
+        when(workoutRepository.findSummariesByUserId(1L)).thenReturn(List.of(dto));
+
+        List<WorkoutSummaryDto> results = workoutService.getAllWorkouts();
+
+        assertEquals(1, results.size());
+        assertEquals(100L, results.get(0).getId());
+        assertEquals("Trening #1", results.get(0).getTitle());
+        verify(workoutRepository).findSummariesByUserId(1L);
+    }
+
+    @Test
+    void getWorkoutsByUserId_WhenSameUser_ReturnsSummaries() {
+        WorkoutSummaryDto dto = WorkoutSummaryDto.builder()
+                .id(100L)
+                .workoutNumber(1)
+                .userId(1L)
+                .title("Trening #1")
+                .build();
+        when(workoutRepository.findSummariesByUserId(1L)).thenReturn(List.of(dto));
+
+        List<WorkoutSummaryDto> results = workoutService.getWorkoutsByUserId(1L);
+
+        assertEquals(1, results.size());
+        assertEquals(100L, results.get(0).getId());
+        verify(workoutRepository).findSummariesByUserId(1L);
+    }
+
+    @Test
+    void getWorkoutsByUserId_WhenDifferentUser_ThrowsForbidden() {
+        ResponseStatusException ex = assertThrows(ResponseStatusException.class, () ->
+                workoutService.getWorkoutsByUserId(2L));
+
+        assertEquals(HttpStatus.FORBIDDEN, ex.getStatusCode());
+        verify(workoutRepository, never()).findSummariesByUserId(any());
     }
 }

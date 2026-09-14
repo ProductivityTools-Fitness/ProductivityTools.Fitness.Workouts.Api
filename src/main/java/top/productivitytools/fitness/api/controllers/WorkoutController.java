@@ -18,6 +18,8 @@ import top.productivitytools.fitness.api.dto.requests.DeleteWorkoutRequest;
 import top.productivitytools.fitness.api.dto.requests.SaveSetRequest;
 import top.productivitytools.fitness.api.services.hevy.HevyImportService;
 
+import top.productivitytools.fitness.api.dto.responses.WorkoutSummaryDto;
+
 import java.util.List;
 
 @RestController
@@ -34,7 +36,7 @@ public class WorkoutController {
     }
 
     @GetMapping({"/list", ""})
-    public List<Workout> getAllWorkouts() {
+    public List<WorkoutSummaryDto> getAllWorkouts() {
         return workoutService.getAllWorkouts();
     }
 

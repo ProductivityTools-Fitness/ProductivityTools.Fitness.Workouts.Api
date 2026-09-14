@@ -63,12 +63,22 @@ class HevyExerciseCatalogServiceTest {
     }
 
     @Test
-    void findMapping_OverheadPressDumbbell_MapsToBarbellStandingBradfordPress() {
-        Optional<HevyExerciseCatalogItem> opt = catalogService.findMapping("Overhead Press (Dumbbell)");
+    void findMapping_OverheadPressBarbell_MapsToBarbellStandingBradfordPress() {
+        Optional<HevyExerciseCatalogItem> opt = catalogService.findMapping("Overhead Press (Barbell)");
         assertTrue(opt.isPresent());
         assertEquals("dCPESfR", opt.get().externalExerciseId());
         assertEquals("barbell standing bradford press", opt.get().name());
         assertEquals("barbell", opt.get().equipmentCategory());
+        assertEquals("shoulders", opt.get().bodyCategory());
+    }
+
+    @Test
+    void findMapping_OverheadPressDumbbell_MapsToDumbbellStandingOverheadPress() {
+        Optional<HevyExerciseCatalogItem> opt = catalogService.findMapping("Overhead Press (Dumbbell)");
+        assertTrue(opt.isPresent());
+        assertEquals("A6wtbuL", opt.get().externalExerciseId());
+        assertEquals("dumbbell standing overhead press", opt.get().name());
+        assertEquals("dumbbell", opt.get().equipmentCategory());
         assertEquals("shoulders", opt.get().bodyCategory());
     }
 

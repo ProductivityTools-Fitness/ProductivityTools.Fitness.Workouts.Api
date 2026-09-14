@@ -705,28 +705,6 @@
   {
     "hevyTitle": "Overhead Press (Barbell)",
     "hevyPlTitle": "Wyciskanie żołnierskie (sztanga)",
-    "name": "barbell seated overhead press",
-    "externalExerciseId": "kTbSH9h",
-    "equipmentCategory": "barbell",
-    "bodyCategory": "shoulders",
-    "targetMuscle": "delts",
-    "secondaryMuscles": [
-      "triceps",
-      "upper back"
-    ],
-    "instructions": [
-      "Step:1 Sit on a bench with your back straight and feet flat on the ground.",
-      "Step:2 Hold the barbell with an overhand grip, slightly wider than shoulder-width apart.",
-      "Step:3 Lift the barbell off the rack and bring it to shoulder level, with your elbows bent and palms facing forward.",
-      "Step:4 Press the barbell overhead by extending your arms fully.",
-      "Step:5 Pause for a moment at the top, then slowly lower the barbell back to shoulder level.",
-      "Step:6 Repeat for the desired number of repetitions."
-    ],
-    "gifUrl": "https://static.exercisedb.dev/media/kTbSH9h.gif"
-  },
-  {
-    "hevyTitle": "Overhead Press (Dumbbell)",
-    "hevyPlTitle": "Wyciskanie żołnierskie (hantle)",
     "name": "barbell standing bradford press",
     "externalExerciseId": "dCPESfR",
     "equipmentCategory": "barbell",
@@ -743,6 +721,26 @@
       "Step:4 Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://static.exercisedb.dev/media/dCPESfR.gif"
+  },
+  {
+    "hevyTitle": "Overhead Press (Dumbbell)",
+    "hevyPlTitle": "Wyciskanie żołnierskie (hantle)",
+    "name": "dumbbell standing overhead press",
+    "externalExerciseId": "A6wtbuL",
+    "equipmentCategory": "dumbbell",
+    "bodyCategory": "shoulders",
+    "targetMuscle": "delts",
+    "secondaryMuscles": [
+      "triceps",
+      "upper back"
+    ],
+    "instructions": [
+      "Step:1 Stand with your feet shoulder-width apart, holding a dumbbell in each hand at shoulder level with your palms facing forward.",
+      "Step:2 Press the dumbbells upward until your arms are fully extended overhead.",
+      "Step:3 Pause for a moment at the top, then slowly lower the dumbbells back down to shoulder level.",
+      "Step:4 Repeat for the desired number of repetitions."
+    ],
+    "gifUrl": "https://static.exercisedb.dev/media/A6wtbuL.gif"
   },
   {
     "hevyTitle": "Arnold Press (Dumbbell)",

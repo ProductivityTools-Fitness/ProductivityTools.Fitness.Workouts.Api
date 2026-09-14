@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import top.productivitytools.fitness.api.dto.requests.AddExercisesRequest;
 import top.productivitytools.fitness.api.dto.requests.AddSetRequest;
 import top.productivitytools.fitness.api.dto.requests.SaveSetRequest;
+import top.productivitytools.fitness.api.dto.responses.WorkoutSummaryDto;
 import top.productivitytools.fitness.api.entities.Exercise;
 import top.productivitytools.fitness.api.entities.FitnessUser;
 import top.productivitytools.fitness.api.entities.Workout;
@@ -37,17 +38,17 @@ public class WorkoutService {
     private final WorkoutExerciseRepository workoutExerciseRepository;
     private final WorkoutSetRepository workoutSetRepository;
 
-    public List<Workout> getAllWorkouts() {
+    public List<WorkoutSummaryDto> getAllWorkouts() {
         FitnessUser user = getCurrentUser();
-        return repository.findByUserIdOrderByStartTimeDesc(user.getId());
+        return repository.findSummariesByUserId(user.getId());
     }
 
-    public List<Workout> getWorkoutsByUserId(Long userId) {
+    public List<WorkoutSummaryDto> getWorkoutsByUserId(Long userId) {
         FitnessUser currentUser = getCurrentUser();
         if (userId != null && !userId.equals(currentUser.getId())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Cannot access workouts of another user");
         }
-        return repository.findByUserIdOrderByStartTimeDesc(currentUser.getId());
+        return repository.findSummariesByUserId(currentUser.getId());
     }
 
     public Optional<Workout> getWorkoutById(Long id) {
