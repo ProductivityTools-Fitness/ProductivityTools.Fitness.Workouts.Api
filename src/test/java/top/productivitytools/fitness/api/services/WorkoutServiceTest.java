@@ -72,7 +72,7 @@ class WorkoutServiceTest {
     }
 
     @Test
-    void addExercisesToWorkout_WhenNeverDoneBefore_CreatesSingleInitialSetWithNullPrev() {
+    void addExercisesToWorkout_WhenNeverDoneBefore_CreatesSingleInitialSet() {
         when(workoutRepository.findById(100L)).thenReturn(Optional.of(currentWorkout));
         when(exerciseRepository.findById(10L)).thenReturn(Optional.of(exercise));
         when(workoutExerciseRepository.findPastExercises(eq(1L), eq(10L), eq(100L), any(OffsetDateTime.class), any(Pageable.class)))
@@ -97,7 +97,7 @@ class WorkoutServiceTest {
     }
 
     @Test
-    void addExercisesToWorkout_WhenDoneInPast_CopiesSetsAndSetsPrevStats() {
+    void addExercisesToWorkout_WhenDoneInPast_CopiesSets() {
         when(workoutRepository.findById(100L)).thenReturn(Optional.of(currentWorkout));
         when(exerciseRepository.findById(10L)).thenReturn(Optional.of(exercise));
 
@@ -165,8 +165,6 @@ class WorkoutServiceTest {
         existingSet.setSetNumber(1);
         existingSet.setWeightKg(new BigDecimal("80.00"));
         existingSet.setReps(10);
-        existingSet.setPrevWeightKg(new BigDecimal("80.00"));
-        existingSet.setPrevReps(10);
         we.getSets().add(existingSet);
 
         // Setup past exercise which had a 2nd set

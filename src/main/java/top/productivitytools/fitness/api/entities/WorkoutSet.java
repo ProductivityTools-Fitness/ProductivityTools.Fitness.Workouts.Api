@@ -34,10 +34,10 @@ public class WorkoutSet {
     @Column(nullable = false)
     private Integer reps = 0;
 
-    @Column(name = "prev_weight_kg", precision = 6, scale = 2)
+    @Transient
     private BigDecimal prevWeightKg;
 
-    @Column(name = "prev_reps")
+    @Transient
     private Integer prevReps;
 
     @Column(name = "is_completed", nullable = false)

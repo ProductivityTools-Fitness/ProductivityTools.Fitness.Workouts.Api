@@ -25,9 +25,12 @@ import top.productivitytools.fitness.api.security.UserContext;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,8 +56,10 @@ public class WorkoutService {
 
     public Optional<Workout> getWorkoutById(Long id) {
         FitnessUser currentUser = getCurrentUser();
-        return repository.findById(id)
+        Optional<Workout> workoutOpt = repository.findById(id)
                 .filter(w -> w.getUser() == null || (w.getUser().getId() != null && w.getUser().getId().equals(currentUser.getId())));
+        workoutOpt.ifPresent(this::populatePreviousSetStats);
+        return workoutOpt;
     }
 
     @Transactional
@@ -80,7 +85,9 @@ public class WorkoutService {
                 workout.setTitle("Trening #" + workout.getWorkoutNumber());
             }
         }
-        return repository.save(workout);
+        Workout saved = repository.save(workout);
+        populatePreviousSetStats(saved);
+        return saved;
     }
 
     @Transactional
@@ -88,7 +95,9 @@ public class WorkoutService {
         Workout workout = repository.findById(workoutId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Workout not found with id: " + workoutId));
         workout.setTitle(title);
-        return repository.save(workout);
+        Workout saved = repository.save(workout);
+        populatePreviousSetStats(saved);
+        return saved;
     }
 
 
@@ -153,7 +162,9 @@ public class WorkoutService {
             workout.getExercises().add(workoutExercise);
         }
 
-        return repository.save(workout);
+        Workout saved = repository.save(workout);
+        populatePreviousSetStats(saved);
+        return saved;
     }
 
     @Transactional
@@ -198,7 +209,9 @@ public class WorkoutService {
 
         workoutSetRepository.save(newSet);
         workoutExerciseRepository.save(workoutExercise);
-        return repository.save(workout);
+        Workout saved = repository.save(workout);
+        populatePreviousSetStats(saved);
+        return saved;
     }
 
     public Optional<WorkoutExercise> findPastExercise(Long userId, Long exerciseId, Long currentWorkoutId, OffsetDateTime currentWorkoutStartTime) {
@@ -230,7 +243,9 @@ public class WorkoutService {
             workoutSet.setIsCompleted(request.status());
         }
 
-        return workoutSetRepository.save(workoutSet);
+        WorkoutSet saved = workoutSetRepository.save(workoutSet);
+        populatePreviousSetStats(saved);
+        return saved;
     }
 
     @Transactional
@@ -292,7 +307,73 @@ public class WorkoutService {
             workout.setDurationSeconds((int) Math.max(0, duration));
         }
         workout.setUpdatedAt(now);
-        return repository.save(workout);
+        Workout saved = repository.save(workout);
+        populatePreviousSetStats(saved);
+        return saved;
+    }
+
+    public void populatePreviousSetStats(Workout workout) {
+        if (workout == null || workout.getUser() == null || workout.getExercises() == null) {
+            return;
+        }
+        Long userId = workout.getUser().getId();
+        if (userId == null) {
+            return;
+        }
+
+        for (WorkoutExercise we : workout.getExercises()) {
+            if (we.getExercise() == null || we.getExercise().getId() == null) {
+                continue;
+            }
+            Long exerciseId = we.getExercise().getId();
+            Optional<WorkoutExercise> pastExerciseOpt = findPastExercise(
+                    userId, exerciseId, workout.getId(), workout.getStartTime()
+            );
+
+            Map<Integer, WorkoutSet> pastSetByNumber = pastExerciseOpt
+                    .map(pe -> pe.getSets().stream()
+                            .filter(s -> s.getSetNumber() != null)
+                            .collect(Collectors.toMap(WorkoutSet::getSetNumber, s -> s, (s1, s2) -> s1)))
+                    .orElse(Collections.emptyMap());
+
+            if (we.getSets() != null) {
+                for (WorkoutSet set : we.getSets()) {
+                    WorkoutSet pastSet = pastSetByNumber.get(set.getSetNumber());
+                    if (pastSet != null) {
+                        set.setPrevWeightKg(pastSet.getWeightKg());
+                        set.setPrevReps(pastSet.getReps());
+                    } else {
+                        set.setPrevWeightKg(null);
+                        set.setPrevReps(null);
+                    }
+                }
+            }
+        }
+    }
+
+    public void populatePreviousSetStats(WorkoutSet workoutSet) {
+        if (workoutSet == null || workoutSet.getWorkoutExercise() == null) {
+            return;
+        }
+        WorkoutExercise we = workoutSet.getWorkoutExercise();
+        Workout workout = we.getWorkout();
+        if (workout == null || workout.getUser() == null || workout.getUser().getId() == null || we.getExercise() == null || we.getExercise().getId() == null) {
+            return;
+        }
+        Long userId = workout.getUser().getId();
+        Long exerciseId = we.getExercise().getId();
+        Optional<WorkoutExercise> pastExerciseOpt = findPastExercise(
+                userId, exerciseId, workout.getId(), workout.getStartTime()
+        );
+        if (pastExerciseOpt.isPresent() && workoutSet.getSetNumber() != null) {
+            pastExerciseOpt.get().getSets().stream()
+                    .filter(s -> workoutSet.getSetNumber().equals(s.getSetNumber()))
+                    .findFirst()
+                    .ifPresent(pastSet -> {
+                        workoutSet.setPrevWeightKg(pastSet.getWeightKg());
+                        workoutSet.setPrevReps(pastSet.getReps());
+                    });
+        }
     }
 
     @Transactional

@@ -51,7 +51,11 @@ public class WorkoutExercise {
         WorkoutSet previousSet = sets.isEmpty() ? null : sets.get(sets.size() - 1);
         BigDecimal defaultWeight = previousSet != null ? previousSet.getWeightKg() : BigDecimal.ZERO;
         Integer defaultReps = previousSet != null ? previousSet.getReps() : 0;
-        return addSet(defaultWeight, defaultReps, null, null);
+        return addSet(defaultWeight, defaultReps);
+    }
+
+    public WorkoutSet addSet(BigDecimal weightKg, Integer reps) {
+        return addSet(weightKg, reps, null, null);
     }
 
     public WorkoutSet addSet(BigDecimal weightKg, Integer reps, BigDecimal prevWeightKg, Integer prevReps) {
