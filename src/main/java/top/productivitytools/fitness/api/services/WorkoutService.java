@@ -313,13 +313,24 @@ public class WorkoutService {
     }
 
     public void populatePreviousSetStats(Workout workout) {
-        if (workout == null || workout.getUser() == null || workout.getExercises() == null) {
+        if (workout == null || workout.getExercises() == null) {
+            return;
+        }
+        if ("COMPLETED".equalsIgnoreCase(workout.getStatus())) {
+            for (WorkoutExercise we : workout.getExercises()) {
+                if (we.getSets() != null) {
+                    for (WorkoutSet set : we.getSets()) {
+                        set.setPrevWeightKg(null);
+                        set.setPrevReps(null);
+                    }
+                }
+            }
+            return;
+        }
+        if (workout.getUser() == null || workout.getUser().getId() == null) {
             return;
         }
         Long userId = workout.getUser().getId();
-        if (userId == null) {
-            return;
-        }
 
         for (WorkoutExercise we : workout.getExercises()) {
             if (we.getExercise() == null || we.getExercise().getId() == null) {
@@ -356,8 +367,13 @@ public class WorkoutService {
             return;
         }
         WorkoutExercise we = workoutSet.getWorkoutExercise();
-        Workout workout = we.getWorkout();
-        if (workout == null || workout.getUser() == null || workout.getUser().getId() == null || we.getExercise() == null || we.getExercise().getId() == null) {
+        Workout workout = we != null ? we.getWorkout() : null;
+        if (workout != null && "COMPLETED".equalsIgnoreCase(workout.getStatus())) {
+            workoutSet.setPrevWeightKg(null);
+            workoutSet.setPrevReps(null);
+            return;
+        }
+        if (we == null || workout == null || workout.getUser() == null || workout.getUser().getId() == null || we.getExercise() == null || we.getExercise().getId() == null) {
             return;
         }
         Long userId = workout.getUser().getId();

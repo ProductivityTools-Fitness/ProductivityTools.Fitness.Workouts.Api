@@ -211,11 +211,15 @@ class WorkoutServiceTest {
     }
 
     @Test
-    void completeWorkout_SetsStatusCompletedAndCalculatesDuration() {
+    void completeWorkout_SetsStatusCompletedAndCalculatesDurationAndClearsPrevStats() {
         Workout workout = new Workout();
         workout.setId(200L);
         workout.setStartTime(OffsetDateTime.now().minusSeconds(120));
         workout.setStatus("IN_PROGRESS");
+
+        WorkoutExercise we = new WorkoutExercise();
+        WorkoutSet set = we.addSet(new BigDecimal("60.00"), 10, new BigDecimal("55.00"), 10);
+        workout.getExercises().add(we);
 
         when(workoutRepository.findById(200L)).thenReturn(Optional.of(workout));
         when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
@@ -226,7 +230,55 @@ class WorkoutServiceTest {
         assertEquals("COMPLETED", completed.getStatus());
         assertNotNull(completed.getEndTime());
         assertTrue(completed.getDurationSeconds() >= 119);
+        assertNull(set.getPrevWeightKg());
+        assertNull(set.getPrevReps());
         verify(workoutRepository).save(workout);
+    }
+
+    @Test
+    void getWorkoutById_WhenWorkoutIsCompleted_DoesNotPopulatePrevStats() {
+        Workout workout = new Workout();
+        workout.setId(300L);
+        workout.setUser(user);
+        workout.setStatus("COMPLETED");
+
+        WorkoutExercise we = new WorkoutExercise();
+        we.setExercise(exercise);
+        WorkoutSet set = we.addSet(new BigDecimal("80.00"), 10);
+        workout.getExercises().add(we);
+
+        when(workoutRepository.findById(300L)).thenReturn(Optional.of(workout));
+
+        Optional<Workout> result = workoutService.getWorkoutById(300L);
+
+        assertTrue(result.isPresent());
+        assertNull(result.get().getExercises().get(0).getSets().get(0).getPrevWeightKg());
+        assertNull(result.get().getExercises().get(0).getSets().get(0).getPrevReps());
+        verify(workoutExerciseRepository, never()).findPastExercises(any(), any(), any(), any(), any());
+    }
+
+    @Test
+    void populatePreviousSetStats_WorkoutSet_WhenWorkoutCompleted_SetsPrevStatsToNull() {
+        Workout workout = new Workout();
+        workout.setId(400L);
+        workout.setUser(user);
+        workout.setStatus("COMPLETED");
+
+        WorkoutExercise we = new WorkoutExercise();
+        we.setWorkout(workout);
+        we.setExercise(exercise);
+
+        WorkoutSet set = new WorkoutSet();
+        set.setWorkoutExercise(we);
+        set.setSetNumber(1);
+        set.setPrevWeightKg(new BigDecimal("70.00"));
+        set.setPrevReps(8);
+
+        workoutService.populatePreviousSetStats(set);
+
+        assertNull(set.getPrevWeightKg());
+        assertNull(set.getPrevReps());
+        verify(workoutExerciseRepository, never()).findPastExercises(any(), any(), any(), any(), any());
     }
 
     @Test
