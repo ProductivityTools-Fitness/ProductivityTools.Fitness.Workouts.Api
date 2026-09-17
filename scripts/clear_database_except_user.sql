@@ -1,6 +1,12 @@
 -- ==============================================================================
 -- Skrypt czyszczący zawartość tabel z pominięciem tabeli fitness_user
 -- oraz resetujący sekwencje identyfikatorów (ID) do wartości początkowej (1).
+--
+-- Połączenie z bazą (przy uruchomionym cloud-sql-proxy na porcie 5432):
+--   Host:     localhost
+--   Port:     5432
+--   Database: ptfitness
+--   User:     fitness (hasło: Jamnik1!) lub postgres (hasło: Pawel123)
 -- ==============================================================================
 
 -- 1. Usunięcie wszystkich danych z tabel w odpowiedniej kolejności kaskadowej
@@ -24,5 +30,13 @@ ALTER SEQUENCE IF EXISTS workout_id_seq RESTART WITH 1;
 ALTER SEQUENCE IF EXISTS workout_schedule_id_seq RESTART WITH 1;
 ALTER SEQUENCE IF EXISTS exercise_id_seq RESTART WITH 1;
 
--- Informacja weryfikacyjna:
-SELECT 'Tabela fitness_user zachowana: ' || COUNT(*) || ' użytkowników w bazie.' AS status FROM fitness_user;
+-- 3. Weryfikacja po wykonaniu:
+SELECT 'fitness_user' AS tabela, COUNT(*) AS liczba_rekordow FROM fitness_user
+UNION ALL
+SELECT 'exercise' AS tabela, COUNT(*) AS liczba_rekordow FROM exercise
+UNION ALL
+SELECT 'workout' AS tabela, COUNT(*) AS liczba_rekordow FROM workout
+UNION ALL
+SELECT 'workout_exercise' AS tabela, COUNT(*) AS liczba_rekordow FROM workout_exercise
+UNION ALL
+SELECT 'workout_set' AS tabela, COUNT(*) AS liczba_rekordow FROM workout_set;

@@ -142,11 +142,7 @@ Resources that were needed:
 For DB public IP was enabled ot be able to use cloud-sql-proxy
 
 
-### Terraform
 
-```
-alias terraform="/google/bin/releases/g3terraform/runner_main --base_service_dir=\$(pwd) --tf_label='terraform_1_13_5'"
-```
 
 ## Debug
 
