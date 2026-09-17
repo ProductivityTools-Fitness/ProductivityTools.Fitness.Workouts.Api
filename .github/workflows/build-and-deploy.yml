@@ -13,11 +13,11 @@ jobs:
         include:
           - target-runner: "fitness-vm"
             server-port: "8084"
-            db-url: "jdbc:postgresql://10.10.0.2:5432/ptfitness"
+            db-url: "jdbc:postgresql://10.10.0.2:5432/ptfitness-api"
             db-user: "postgres"
           - target-runner: "T460Ubuntu1"
             server-port: "8084"
-            db-url: "jdbc:postgresql://localhost:5432/ptfitness"
+            db-url: "jdbc:postgresql://localhost:5432/ptfitness-api"
             db-user: "postgres"
 
     runs-on: [ self-hosted, "${{ matrix.target-runner }}" ]
