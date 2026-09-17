@@ -11,13 +11,13 @@ jobs:
       fail-fast: false # Pozwala jednemu runnerowi dokończyć wdrożenie nawet jeśli drugi napotka błąd
       matrix:
         include:
-          - target-runner: "fitness-vm"
+          - target-runner: "fitness-workouts-api"
             server-port: "8084"
-            db-url: "jdbc:postgresql://10.10.0.2:5432/ptfitness-api"
+            db-url: "jdbc:postgresql://10.10.0.2:5432/ptfitness-workouts"
             db-user: "postgres"
           - target-runner: "T460Ubuntu1"
             server-port: "8084"
-            db-url: "jdbc:postgresql://localhost:5432/ptfitness-api"
+            db-url: "jdbc:postgresql://localhost:5432/ptfitness-workouts"
             db-user: "postgres"
 
     runs-on: [ self-hosted, "${{ matrix.target-runner }}" ]
@@ -49,18 +49,18 @@ jobs:
     - name: Stop application
       run: |
         echo "Stopping application"
-        sudo systemctl stop fitness-api || true
+        sudo systemctl stop fitness-workouts-api || true
 
-    - name: Copy Jar to /opt/PT.Fitness-Api
+    - name: Copy Jar to /opt/Fitness.Workouts.Api
       run: |
-        echo "Copying JAR to /opt/PT.Fitness-Api"
+        echo "Copying JAR to /opt/Fitness.Workouts.Api"
         umask 002
-        JAR=build/libs/fitness-api-0.0.1-SNAPSHOT.jar
+        JAR=build/libs/Fitness.Workouts.Api-0.0.1-SNAPSHOT.jar
         if [ ! -f "$JAR" ]; then
           echo "Jar not found at $JAR"; exit 1
         fi
-        sudo mkdir -p /opt/PT.Fitness-Api
-        sudo cp "$JAR" /opt/PT.Fitness-Api/
+        sudo mkdir -p /opt/Fitness.Workouts.Api
+        sudo cp "$JAR" /opt/Fitness.Workouts.Api/
 
     - name: Configure environment variables and systemd service
       env:
@@ -72,27 +72,27 @@ jobs:
         echo "Configuring environment variables and systemd service file..."
         
         # 1. Create secure environment file with runner-specific configuration
-        cat << EOF > /tmp/fitness-api.env
+        cat << EOF > /tmp/Fitness.Workouts.Api.env
         SERVER_PORT=$SERVER_PORT
         DB_URL=$DB_URL
         DB_USERNAME=$DB_USER
         EOF
 
         if [ -n "$DB_PASS" ]; then
-          echo "DB_PASSWORD=$DB_PASS" >> /tmp/fitness-api.env
+          echo "DB_PASSWORD=$DB_PASS" >> /tmp/Fitness.Workouts.Api.env
         fi
 
-        sudo mv /tmp/fitness-api.env /opt/PT.Fitness-Api/fitness-api.env
-        sudo chmod 600 /opt/PT.Fitness-Api/fitness-api.env
+        sudo mv /tmp/Fitness.Workouts.Api.env /opt/Fitness.Workouts.Api/Fitness.Workouts.Api.env
+        sudo chmod 600 /opt/Fitness.Workouts.Api/Fitness.Workouts.Api.env
 
         # 2. Configure and install systemd service
         CURRENT_USER=$(whoami)
-        cp deployment/fitness-api.service /tmp/fitness-api.service
-        sed -i "s/USER_PLACEHOLDER/$CURRENT_USER/g" /tmp/fitness-api.service
-        sudo mv /tmp/fitness-api.service /etc/systemd/system/fitness-api.service
+        cp deployment/fitness-workouts-api.service /tmp/fitness-workouts-api.service
+        sed -i "s/USER_PLACEHOLDER/$CURRENT_USER/g" /tmp/fitness-workouts-api.service
+        sudo mv /tmp/fitness-workouts-api.service /etc/systemd/system/fitness-workouts-api.service
         sudo systemctl daemon-reload
 
     - name: Start application
       run: |
         echo "Starting application"
-        sudo systemctl start fitness-api
+        sudo systemctl start fitness-workouts-api

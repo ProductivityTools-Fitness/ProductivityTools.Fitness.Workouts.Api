@@ -5,7 +5,7 @@
 -- Połączenie z bazą (przy uruchomionym cloud-sql-proxy na porcie 5432):
 --   Host:     localhost
 --   Port:     5432
---   Database: ptfitness-api
+--   Database: ptfitness-workouts-api
 --   User:     fitness (hasło: Jamnik1!) lub postgres (hasło: Pawel123)
 -- ==============================================================================
 

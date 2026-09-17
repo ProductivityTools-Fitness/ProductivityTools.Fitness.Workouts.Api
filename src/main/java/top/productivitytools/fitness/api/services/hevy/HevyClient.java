@@ -17,7 +17,7 @@ public class HevyClient {
     public HevyClient() {
         this.restClient = RestClient.builder()
                 .baseUrl("https://api.hevyapp.com")
-                .defaultHeader("User-Agent", "ProductivityTools-Fitness-Api")
+                .defaultHeader("User-Agent", "fitness-workouts-api")
                 .build();
     }
 

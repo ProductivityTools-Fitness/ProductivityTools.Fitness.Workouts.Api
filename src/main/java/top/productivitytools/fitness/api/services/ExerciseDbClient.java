@@ -18,7 +18,7 @@ public class ExerciseDbClient {
     public ExerciseDbClient() {
         this(RestClient.builder()
                 .baseUrl("https://oss.exercisedb.dev/api/v1")
-                .defaultHeader("User-Agent", "ProductivityTools-Fitness-Api")
+                .defaultHeader("User-Agent", "fitness-workouts-api")
                 .build());
     }
 

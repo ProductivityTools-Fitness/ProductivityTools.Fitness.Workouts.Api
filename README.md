@@ -1,4 +1,4 @@
-# ProductivityTools.Fitness.Api
+# ProductivityTools.Fitness.Workouts.Api (fitness-workouts-api)
 
 REST API service for fitness tracking, workout management, and training schedule logging. Built with **Spring Boot**, **Java 21**, **Spring Data JPA**, **Flyway**, and **PostgreSQL**.
 
@@ -7,11 +7,11 @@ REST API service for fitness tracking, workout management, and training schedule
 ## 🏗️ Architecture & Infrastructure
 
 * **Google Cloud Platform (GCP)**:
-  * **Compute Engine VM (`fitness-vm`)**: Hosts the Spring Boot application running as a `systemd` service.
-  * **Cloud SQL Production (`ptfitness`)**: Private instance using **Private Service Connect (PSC)** (`10.10.0.2:5432`).
-  * **Cloud SQL Development (`pt-fitness-dev`)**: Development/testing instance with **Public IP** enabled for seamless local connections via **Cloud SQL Auth Proxy**.
+  * **Compute Engine VM (`fitness-workouts-api-vm`)**: Hosts the Spring Boot application running as a `systemd` service (`fitness-workouts-api.service`).
+  * **Cloud SQL Production (`ptfitness`)**: Private instance using **Private Service Connect (PSC)** (`10.10.0.2:5432`, database `ptfitness-workouts-api`).
+  * **Cloud SQL Development (`ptfitness-dev`)**: Development/testing instance with **Public IP** enabled for seamless local connections via **Cloud SQL Auth Proxy**.
 * **CI/CD Deployment**:
-  * Automated GitHub Actions matrix workflow deploying simultaneously to self-hosted runners (`fitness-vm` and local servers).
+  * Automated GitHub Actions matrix workflow deploying simultaneously to self-hosted runners (`fitness-workouts-api-vm` and local servers).
 
 ---
 
@@ -101,13 +101,13 @@ Check if github action is working on the ububtu
 
 ```
 sudo systemctl status "actions.runner.*"
-sudo systemctl status fitness-api.service
+sudo systemctl status fitness-workouts-api.service
 
 
 logs
-sudo journalctl -u fitness-api.service -n 100 --no-pager
+sudo journalctl -u fitness-workouts-api.service -n 100 --no-pager
 
-sudo systemctl restart fitness-api.service
+sudo systemctl restart fitness-workouts-api.service
 ```
 
 
@@ -120,7 +120,7 @@ sudo ufw allow 5432/tcp
 ```
 
 ### Password
-Password that application uses is written in the /opt/PT.Fitness-Api/fintess-api.env
+Password that application uses is written in `/opt/fitness-workouts-api/fitness-workouts-api.env`
 It is created by github action
 ```
     - name: Configure environment variables and systemd service
