@@ -51,16 +51,16 @@ jobs:
         echo "Stopping application"
         sudo systemctl stop fitness-workouts-api || true
 
-    - name: Copy Jar to /opt/Fitness.Workouts.Api
+    - name: Copy Jar to /opt/fitness-workouts-api
       run: |
-        echo "Copying JAR to /opt/Fitness.Workouts.Api"
+        echo "Copying JAR to /opt/fitness-workouts-api"
         umask 002
-        JAR=build/libs/Fitness.Workouts.Api-0.0.1-SNAPSHOT.jar
+        JAR=build/libs/fitness-workouts-api-0.0.1-SNAPSHOT.jar
         if [ ! -f "$JAR" ]; then
           echo "Jar not found at $JAR"; exit 1
         fi
-        sudo mkdir -p /opt/Fitness.Workouts.Api
-        sudo cp "$JAR" /opt/Fitness.Workouts.Api/
+        sudo mkdir -p /opt/fitness-workouts-api
+        sudo cp "$JAR" /opt/fitness-workouts-api/
 
     - name: Configure environment variables and systemd service
       env:
@@ -72,18 +72,18 @@ jobs:
         echo "Configuring environment variables and systemd service file..."
         
         # 1. Create secure environment file with runner-specific configuration
-        cat << EOF > /tmp/Fitness.Workouts.Api.env
+        cat << EOF > /tmp/fitness-workouts-api.env
         SERVER_PORT=$SERVER_PORT
         DB_URL=$DB_URL
         DB_USERNAME=$DB_USER
         EOF
 
         if [ -n "$DB_PASS" ]; then
-          echo "DB_PASSWORD=$DB_PASS" >> /tmp/Fitness.Workouts.Api.env
+          echo "DB_PASSWORD=$DB_PASS" >> /tmp/fitness-workouts-api.env
         fi
 
-        sudo mv /tmp/Fitness.Workouts.Api.env /opt/Fitness.Workouts.Api/Fitness.Workouts.Api.env
-        sudo chmod 600 /opt/Fitness.Workouts.Api/Fitness.Workouts.Api.env
+        sudo mv /tmp/fitness-workouts-api.env /opt/fitness-workouts-api/fitness-workouts-api.env
+        sudo chmod 600 /opt/fitness-workouts-api/fitness-workouts-api.env
 
         # 2. Configure and install systemd service
         CURRENT_USER=$(whoami)
