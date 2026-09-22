@@ -119,7 +119,7 @@ class HevyImportServiceTest {
         when(hevyClient.fetchWorkouts("test-token")).thenReturn(List.of(workoutNode));
         when(workoutRepository.findMaxWorkoutNumberByUserId(1L)).thenReturn(0);
         when(workoutRepository.existsByUserIdAndStartTime(eq(1L), any(OffsetDateTime.class))).thenReturn(false);
-        when(exerciseRepository.findByExternalExerciseId("OHP_123")).thenReturn(Optional.empty());
+        when(exerciseRepository.findByCatalogExerciseId("OHP_123")).thenReturn(Optional.empty());
         when(exerciseRepository.findAvailableExercisesByName(eq(1L), anyString())).thenReturn(List.of());
         when(exerciseRepository.save(any(Exercise.class))).thenAnswer(inv -> {
             Exercise e = inv.getArgument(0);
@@ -218,13 +218,13 @@ class HevyImportServiceTest {
         Exercise systemBench = new Exercise();
         systemBench.setId(10L);
         systemBench.setName("barbell bench press");
-        systemBench.setExternalExerciseId("EIeI8Vf");
+        systemBench.setCatalogExerciseId("fp_barbell_bench_press");
         systemBench.setIsSystem(true);
 
         top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem catalogItem =
                 new top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem(
                         "Bench Press (Barbell)", "Wyciskanie leżąc (sztanga)", "barbell bench press",
-                        "EIeI8Vf", "barbell", "chest", "pectorals", List.of("triceps"), List.of(), "http://gif"
+                        "fp_barbell_bench_press", "barbell", "chest", "pectorals", List.of("triceps"), List.of(), "http://gif"
                 );
 
         Map<String, Object> ex = Map.of(
@@ -245,7 +245,7 @@ class HevyImportServiceTest {
         when(workoutRepository.existsByUserIdAndStartTime(eq(1L), any(OffsetDateTime.class))).thenReturn(false);
         when(hevyExerciseCatalogService.preloadAllExercises()).thenReturn(64);
         when(hevyExerciseCatalogService.findMapping("Bench Press (Barbell)")).thenReturn(Optional.of(catalogItem));
-        when(exerciseRepository.findByExternalExerciseId("EIeI8Vf")).thenReturn(Optional.of(systemBench));
+        when(exerciseRepository.findByCatalogExerciseId("fp_barbell_bench_press")).thenReturn(Optional.of(systemBench));
         when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
 
         HevyImportRequest request = new HevyImportRequest("test-token");

@@ -8,7 +8,7 @@ import top.productivitytools.fitness.api.entities.Exercise;
 import java.util.List;
 
 @Repository
-public interface ExerciseRepository extends ExerciseDbRepository {
+public interface ExerciseRepository extends CatalogExerciseRepository {
 
     List<Exercise> findAllByOrderByNameAsc();
 

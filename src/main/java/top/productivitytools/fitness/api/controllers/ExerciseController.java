@@ -2,6 +2,8 @@ package top.productivitytools.fitness.api.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,20 @@ public class ExerciseController {
     public Exercise getExerciseById(@PathVariable Long id) {
         return exerciseService.getExerciseById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Exercise not found with id: " + id));
+    }
+
+    /**
+     * Animation stored locally when the exercise was imported from the catalogue.
+     * Returns 404 for exercises that have no GIF, which the client should treat as
+     * "show a placeholder", not as an error.
+     */
+    @GetMapping("/{id}/image")
+    public ResponseEntity<byte[]> getExerciseImage(@PathVariable Long id) {
+        return exerciseService.getExerciseImage(id)
+                .map(image -> ResponseEntity.ok()
+                        .contentType(MediaType.parseMediaType(image.getContentType()))
+                        .body(image.getImageData()))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
 

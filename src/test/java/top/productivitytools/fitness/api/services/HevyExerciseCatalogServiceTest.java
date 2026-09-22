@@ -41,7 +41,6 @@ class HevyExerciseCatalogServiceTest {
     void findMapping_ByEnglishHevyTitle_ReturnsItem() {
         Optional<HevyExerciseCatalogItem> opt = catalogService.findMapping("Bench Press (Barbell)");
         assertTrue(opt.isPresent());
-        assertEquals("EIeI8Vf", opt.get().externalExerciseId());
         assertEquals("barbell bench press", opt.get().name());
         assertEquals("barbell", opt.get().equipmentCategory());
         assertEquals("chest", opt.get().bodyCategory());
@@ -51,7 +50,6 @@ class HevyExerciseCatalogServiceTest {
     void findMapping_ByPolishTitle_ReturnsItem() {
         Optional<HevyExerciseCatalogItem> opt = catalogService.findMapping("Wyciskanie leżąc (sztanga)");
         assertTrue(opt.isPresent());
-        assertEquals("EIeI8Vf", opt.get().externalExerciseId());
         assertEquals("barbell bench press", opt.get().name());
     }
 
@@ -66,7 +64,6 @@ class HevyExerciseCatalogServiceTest {
     void findMapping_OverheadPressBarbell_MapsToBarbellStandingBradfordPress() {
         Optional<HevyExerciseCatalogItem> opt = catalogService.findMapping("Overhead Press (Barbell)");
         assertTrue(opt.isPresent());
-        assertEquals("dCPESfR", opt.get().externalExerciseId());
         assertEquals("barbell standing bradford press", opt.get().name());
         assertEquals("barbell", opt.get().equipmentCategory());
         assertEquals("shoulders", opt.get().bodyCategory());
@@ -76,28 +73,42 @@ class HevyExerciseCatalogServiceTest {
     void findMapping_OverheadPressDumbbell_MapsToDumbbellStandingOverheadPress() {
         Optional<HevyExerciseCatalogItem> opt = catalogService.findMapping("Overhead Press (Dumbbell)");
         assertTrue(opt.isPresent());
-        assertEquals("A6wtbuL", opt.get().externalExerciseId());
         assertEquals("dumbbell standing overhead press", opt.get().name());
         assertEquals("dumbbell", opt.get().equipmentCategory());
         assertEquals("shoulders", opt.get().bodyCategory());
     }
 
     @Test
-    void findMapping_UnmappedExercises_HaveNullExternalId() {
+    void findMapping_ExerciseWithCatalogCounterpart_HasCatalogId() {
+        Optional<HevyExerciseCatalogItem> curlOpt = catalogService.findMapping("Bicep Curl (Barbell)");
+        assertTrue(curlOpt.isPresent());
+        assertEquals("fp_barbell_curl", curlOpt.get().catalogExerciseId());
+
         Optional<HevyExerciseCatalogItem> rowingOpt = catalogService.findMapping("Rowing Machine");
         assertTrue(rowingOpt.isPresent());
-        assertNull(rowingOpt.get().externalExerciseId());
-        assertEquals("Rowing Machine", rowingOpt.get().name());
+        assertEquals("exdb_rowing_machine", rowingOpt.get().catalogExerciseId());
+    }
 
-        Optional<HevyExerciseCatalogItem> sledOpt = catalogService.findMapping("Sled Push");
-        assertTrue(sledOpt.isPresent());
-        assertNull(sledOpt.get().externalExerciseId());
-        assertEquals("Sled Push", sledOpt.get().name());
+    /**
+     * 61 of the 64 Hevy titles were mapped manually to Fitness.Catalog.Api.
+     * The remaining 3 have no sensible counterpart and stay local-only,
+     * which the preload has to tolerate.
+     */
+    @Test
+    void findMapping_ExerciseWithoutCatalogCounterpart_HasNullCatalogId() {
+        Optional<HevyExerciseCatalogItem> isoRowOpt = catalogService.findMapping("Iso-Lateral Row (Machine)");
+        assertTrue(isoRowOpt.isPresent());
+        assertNull(isoRowOpt.get().catalogExerciseId());
+
+        Optional<HevyExerciseCatalogItem> lateralRaiseOpt =
+                catalogService.findMapping("Single Arm Lateral Raise (Cable)");
+        assertTrue(lateralRaiseOpt.isPresent());
+        assertNull(lateralRaiseOpt.get().catalogExerciseId());
     }
 
     @Test
     void preloadAllExercises_WhenDatabaseEmpty_SavesAll64Exercises() {
-        when(exerciseRepository.findByExternalExerciseId(anyString())).thenReturn(Optional.empty());
+        when(exerciseRepository.findByCatalogExerciseId(anyString())).thenReturn(Optional.empty());
         when(exerciseRepository.findAvailableExercisesByName(isNull(), anyString())).thenReturn(List.of());
         when(exerciseRepository.save(any(Exercise.class))).thenAnswer(inv -> inv.getArgument(0));
 
@@ -114,14 +125,14 @@ class HevyExerciseCatalogServiceTest {
 
     @Test
     void preloadAllExercises_WhenAlreadyExists_DoesNotDuplicate() {
-        Exercise existingBench = new Exercise();
-        existingBench.setId(1L);
-        existingBench.setName("barbell bench press");
-        existingBench.setExternalExerciseId("EIeI8Vf");
-        existingBench.setIsSystem(true);
+        Exercise existingCurl = new Exercise();
+        existingCurl.setId(1L);
+        existingCurl.setName("barbell curl");
+        existingCurl.setCatalogExerciseId("fp_barbell_curl");
+        existingCurl.setIsSystem(true);
 
-        when(exerciseRepository.findByExternalExerciseId("EIeI8Vf")).thenReturn(Optional.of(existingBench));
-        when(exerciseRepository.findByExternalExerciseId(argThat(id -> !"EIeI8Vf".equals(id)))).thenReturn(Optional.empty());
+        when(exerciseRepository.findByCatalogExerciseId("fp_barbell_curl")).thenReturn(Optional.of(existingCurl));
+        when(exerciseRepository.findByCatalogExerciseId(argThat(id -> !"fp_barbell_curl".equals(id)))).thenReturn(Optional.empty());
         when(exerciseRepository.findAvailableExercisesByName(isNull(), anyString())).thenReturn(List.of());
         when(exerciseRepository.save(any(Exercise.class))).thenAnswer(inv -> inv.getArgument(0));
 

@@ -12,6 +12,7 @@
 -- 1. Usunięcie wszystkich danych z tabel w odpowiedniej kolejności kaskadowej
 --    oraz automatyczny restart powiązanych sekwencji (RESTART IDENTITY).
 TRUNCATE TABLE 
+    exercise_image,
     workout_set,
     workout_exercise,
     workout_template_exercise,
@@ -22,6 +23,7 @@ TRUNCATE TABLE
 RESTART IDENTITY CASCADE;
 
 -- 2. Jawne zresetowanie sekwencji ID (pierwszy nowy rekord otrzyma id = 1).
+ALTER SEQUENCE IF EXISTS exercise_image_id_seq RESTART WITH 1;
 ALTER SEQUENCE IF EXISTS workout_set_id_seq RESTART WITH 1;
 ALTER SEQUENCE IF EXISTS workout_exercise_id_seq RESTART WITH 1;
 ALTER SEQUENCE IF EXISTS workout_template_exercise_id_seq RESTART WITH 1;

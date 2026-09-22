@@ -20,7 +20,8 @@
       "Step:6 Push the barbell back up to the starting position by extending your arms.",
       "Step:7 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/EIeI8Vf.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/EIeI8Vf.gif",
+    "catalogExerciseId": "fp_bench_press"
   },
   {
     "hevyTitle": "Incline Bench Press (Barbell)",
@@ -42,7 +43,8 @@
       "Step:5 Pause for a moment at the bottom, then push the barbell back up to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/3TZduzM.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/3TZduzM.gif",
+    "catalogExerciseId": "fp_incline_barbell_bench_press"
   },
   {
     "hevyTitle": "Decline Bench Press (Barbell)",
@@ -63,7 +65,8 @@
       "Step:4 Pause for a moment at the bottom, then push the barbell back up to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/GrO65fd.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/GrO65fd.gif",
+    "catalogExerciseId": "fp_decline_barbell_bench_press"
   },
   {
     "hevyTitle": "Incline Bench Press (Dumbbell)",
@@ -85,7 +88,8 @@
       "Step:5 Push the dumbbells back up to the starting position, fully extending your arms.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/ns0SIbU.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/ns0SIbU.gif",
+    "catalogExerciseId": "fp_incline_dumbbell_press"
   },
   {
     "hevyTitle": "Chest Press (Machine)",
@@ -106,7 +110,8 @@
       "Step:4 Pause briefly at the end of the movement, then slowly return to the starting position, inhaling as you do so.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/DOoWcnA.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/DOoWcnA.gif",
+    "catalogExerciseId": "fp_lever_chest_press"
   },
   {
     "hevyTitle": "Squat (Barbell)",
@@ -132,7 +137,8 @@
       "Step:7 Drive through your heels to stand back up, extending your hips and knees.",
       "Step:8 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/qXTaZnJ.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/qXTaZnJ.gif",
+    "catalogExerciseId": "fp_squat"
   },
   {
     "hevyTitle": "Sumo Squat (Dumbbell)",
@@ -154,7 +160,8 @@
       "Step:4 Pause for a moment at the bottom, then push through your heels to return to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/yn8yg1r.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/yn8yg1r.gif",
+    "catalogExerciseId": "fp_dumbbell_goblet_squat"
   },
   {
     "hevyTitle": "Bulgarian Split Squat (Dumbbell)",
@@ -176,7 +183,8 @@
       "Step:4 Continue lowering until your front thigh is parallel to the ground, then push through your front heel to return to the starting position.",
       "Step:5 Repeat for the desired number of repetitions, then switch legs and repeat."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/qx4fgX7.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/qx4fgX7.gif",
+    "catalogExerciseId": "fp_dumbbell_bulgarian_split_squat"
   },
   {
     "hevyTitle": "Leg Press Horizontal (Machine)",
@@ -199,7 +207,8 @@
       "Step:5 Pause for a moment at the fully extended position, then slowly bend your leg to return to the starting position.",
       "Step:6 Repeat for the desired number of repetitions, then switch legs."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/9KU9TYF.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/9KU9TYF.gif",
+    "catalogExerciseId": "fp_horizontal_leg_press"
   },
   {
     "hevyTitle": "Leg Extension (Machine)",
@@ -220,7 +229,8 @@
       "Step:5 Pause for a moment at the top, then slowly lower the weight back to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/my33uHU.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/my33uHU.gif",
+    "catalogExerciseId": "fp_leg_extension"
   },
   {
     "hevyTitle": "Calf Press (Machine)",
@@ -242,7 +252,8 @@
       "Step:6 Slowly return to the starting position by allowing your heels to rise back up.",
       "Step:7 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/7B4F5nZ.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/7B4F5nZ.gif",
+    "catalogExerciseId": "fp_horizontal_leg_press"
   },
   {
     "hevyTitle": "Seated Calf Raise",
@@ -264,7 +275,8 @@
       "Step:5 Pause for a moment at the top, then slowly lower your heels back down to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/bOOdeyc.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/bOOdeyc.gif",
+    "catalogExerciseId": "fp_lever_seated_calf_raise"
   },
   {
     "hevyTitle": "Standing Calf Raise (Dumbbell)",
@@ -283,7 +295,8 @@
       "Step:3 Pause for a moment at the top, then slowly lower your heels back down to the starting position.",
       "Step:4 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/dPmaUaU.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/dPmaUaU.gif",
+    "catalogExerciseId": "fp_calf_raise"
   },
   {
     "hevyTitle": "Wall Sit",
@@ -305,7 +318,8 @@
       "Step:4 Lower your right foot back down and lift your left foot off the ground, bringing your knee towards your chest.",
       "Step:5 Continue alternating between lifting your right and left foot for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/sVQCCeG.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/sVQCCeG.gif",
+    "catalogExerciseId": "exdb_wall_sit"
   },
   {
     "hevyTitle": "Box Jump",
@@ -328,7 +342,8 @@
       "Step:5 Slowly step down with the foot that is on the box, returning to the starting position.",
       "Step:6 Repeat the exercise with the other leg."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/iPm26QU.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/iPm26QU.gif",
+    "catalogExerciseId": "fp_the_box_jump"
   },
   {
     "hevyTitle": "Hip Adduction (Machine)",
@@ -349,7 +364,8 @@
       "Step:4 Pause for a moment at the peak contraction, then slowly return to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/oHsrypV.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/oHsrypV.gif",
+    "catalogExerciseId": "fp_hip_adduction_machine"
   },
   {
     "hevyTitle": "Hip Thrust (Barbell)",
@@ -371,7 +387,8 @@
       "Step:5 Slowly lower your hips back down to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/qg2PGl6.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/qg2PGl6.gif",
+    "catalogExerciseId": "fp_barbell_hip_thrusts"
   },
   {
     "hevyTitle": "Deadlift (Barbell)",
@@ -393,7 +410,8 @@
       "Step:5 Lower the barbell back down to the ground by bending at the hips and knees, keeping your back straight.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/ila4NZS.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/ila4NZS.gif",
+    "catalogExerciseId": "fp_deadlift"
   },
   {
     "hevyTitle": "Deadlift (Dumbbell)",
@@ -414,7 +432,8 @@
       "Step:4 Push through your heels and extend your hips and knees, lifting the dumbbells back up to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/nUwVh7b.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/nUwVh7b.gif",
+    "catalogExerciseId": "fp_dumbbell_deadlift"
   },
   {
     "hevyTitle": "Bent Over Row (Barbell)",
@@ -436,7 +455,8 @@
       "Step:5 Pause for a moment at the top, then slowly lower the barbell back to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/eZyBC3j.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/eZyBC3j.gif",
+    "catalogExerciseId": "fp_barbell_bent_over_row"
   },
   {
     "hevyTitle": "Bent Over Row (Dumbbell)",
@@ -458,7 +478,8 @@
       "Step:5 Pause for a moment at the top, then slowly lower the dumbbells back down to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/BJ0Hz5L.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
+    "catalogExerciseId": "fp_bent_over_dumbbell_row"
   },
   {
     "hevyTitle": "Dumbbell Row",
@@ -480,7 +501,8 @@
       "Step:5 Pause for a moment at the top, then slowly lower the dumbbell back down to the starting position.",
       "Step:6 Repeat for the desired number of repetitions, then switch sides."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/C0MA9bC.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/C0MA9bC.gif",
+    "catalogExerciseId": "fp_bent_over_dumbbell_row"
   },
   {
     "hevyTitle": "Seated Row (Machine)",
@@ -504,7 +526,8 @@
       "Step:7 Slowly release the handles and return to the starting position.",
       "Step:8 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/7I6LNUG.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/7I6LNUG.gif",
+    "catalogExerciseId": "fp_close_grip_cable_row"
   },
   {
     "hevyTitle": "Seated Cable Row - V Grip (Cable)",
@@ -525,7 +548,8 @@
       "Step:4 Pause for a moment at the peak of the movement, then slowly release the handles back to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/fUBheHs.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/fUBheHs.gif",
+    "catalogExerciseId": "fp_close_grip_cable_row"
   },
   {
     "hevyTitle": "Seated Cable Row - Bar Grip",
@@ -548,7 +572,8 @@
       "Step:6 Slowly release the handle back to the starting position, fully extending your arms.",
       "Step:7 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/qcY50ZD.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/qcY50ZD.gif",
+    "catalogExerciseId": "fp_close_grip_cable_row"
   },
   {
     "hevyTitle": "Iso-Lateral Row (Machine)",
@@ -569,7 +594,8 @@
       "Step:4 Pause for a moment at the peak of the movement, then slowly release and extend your arms back to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/oROuvrX.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/oROuvrX.gif",
+    "catalogExerciseId": null
   },
   {
     "hevyTitle": "Iso-Lateral High Row (Machine)",
@@ -591,7 +617,8 @@
       "Step:5 Slowly release the handle back to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/OIFMAp1.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/OIFMAp1.gif",
+    "catalogExerciseId": null
   },
   {
     "hevyTitle": "Lat Pulldown (Cable)",
@@ -614,7 +641,8 @@
       "Step:6 Pause for a moment at the bottom of the movement, then slowly release the bar back to the starting position.",
       "Step:7 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/RVwzP10.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/RVwzP10.gif",
+    "catalogExerciseId": "fp_lat_pulldown"
   },
   {
     "hevyTitle": "Lat Pulldown (Machine)",
@@ -637,7 +665,8 @@
       "Step:5 Pause for a moment at the bottom of the movement, then slowly release the handles back to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/7F1DVzn.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/7F1DVzn.gif",
+    "catalogExerciseId": "fp_lever_front_pulldown"
   },
   {
     "hevyTitle": "Pull Up",
@@ -658,7 +687,8 @@
       "Step:4 Pause at the top of the movement, then slowly lower your body back down to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/lBDjFxJ.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/lBDjFxJ.gif",
+    "catalogExerciseId": "fp_pull_up"
   },
   {
     "hevyTitle": "Pullover (Dumbbell)",
@@ -679,7 +709,8 @@
       "Step:4 Pause for a moment, then raise the dumbbell back to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/9XjtHvS.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/9XjtHvS.gif",
+    "catalogExerciseId": "fp_dumbbell_pullover"
   },
   {
     "hevyTitle": "Renegade Row (Dumbbell)",
@@ -700,7 +731,8 @@
       "Step:4 Lower the kettlebell back down to the starting position and repeat with the other arm.",
       "Step:5 Continue alternating arms for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/b9kqlBy.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/b9kqlBy.gif",
+    "catalogExerciseId": "fp_dumbbell_renegade_row"
   },
   {
     "hevyTitle": "Overhead Press (Barbell)",
@@ -720,7 +752,8 @@
       "Step:3 Lower the barbell back down to the starting position.",
       "Step:4 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/dCPESfR.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/dCPESfR.gif",
+    "catalogExerciseId": "fp_barbell_military_press"
   },
   {
     "hevyTitle": "Overhead Press (Dumbbell)",
@@ -740,7 +773,8 @@
       "Step:3 Pause for a moment at the top, then slowly lower the dumbbells back down to shoulder level.",
       "Step:4 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/A6wtbuL.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/A6wtbuL.gif",
+    "catalogExerciseId": "fp_dumbbell_standing_palms_in_press"
   },
   {
     "hevyTitle": "Arnold Press (Dumbbell)",
@@ -761,7 +795,8 @@
       "Step:4 Pause for a moment at the top, then slowly lower the dumbbells back to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/Xy4jlWA.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/Xy4jlWA.gif",
+    "catalogExerciseId": "fp_arnold_press"
   },
   {
     "hevyTitle": "Front Raise (Barbell)",
@@ -781,7 +816,8 @@
       "Step:3 Pause for a moment at the top, then slowly lower the barbell back down to the starting position.",
       "Step:4 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/b2Uoz54.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/b2Uoz54.gif",
+    "catalogExerciseId": "fp_barbell_front_raise"
   },
   {
     "hevyTitle": "Front Raise (Dumbbell)",
@@ -801,7 +837,8 @@
       "Step:3 Pause for a moment at the top, then inhale and slowly lower the dumbbells back down to the starting position.",
       "Step:4 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/3eGE2JC.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/3eGE2JC.gif",
+    "catalogExerciseId": "fp_dumbbell_front_raise"
   },
   {
     "hevyTitle": "Plate Front Raise",
@@ -821,7 +858,8 @@
       "Step:3 Pause for a moment at the top, then inhale and slowly lower the dumbbells back down to the starting position.",
       "Step:4 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/e4aFmFY.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/e4aFmFY.gif",
+    "catalogExerciseId": "fp_weight_plate_front_raise"
   },
   {
     "hevyTitle": "Single Arm Lateral Raise (Cable)",
@@ -842,7 +880,8 @@
       "Step:4 Pause for a moment at the top, then slowly lower your arm back down to the starting position.",
       "Step:5 Repeat for the desired number of repetitions, then switch sides."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/wEulIzp.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/wEulIzp.gif",
+    "catalogExerciseId": null
   },
   {
     "hevyTitle": "Shoulder Press (Machine Plates)",
@@ -863,7 +902,8 @@
       "Step:4 Pause for a moment at the top, then slowly lower the handles back down to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/67n3r98.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/67n3r98.gif",
+    "catalogExerciseId": "fp_lever_shoulder_press"
   },
   {
     "hevyTitle": "Bicep Curl (Barbell)",
@@ -884,7 +924,8 @@
       "Step:5 Inhale as you slowly begin to lower the bar back to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/25GPyDY.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/25GPyDY.gif",
+    "catalogExerciseId": "fp_barbell_curl"
   },
   {
     "hevyTitle": "Bicep Curl (Dumbbell)",
@@ -905,7 +946,8 @@
       "Step:5 Inhale and slowly begin to lower the dumbbells back to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/NbVPDMW.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/NbVPDMW.gif",
+    "catalogExerciseId": "fp_z_bar_curl"
   },
   {
     "hevyTitle": "Hammer Curl (Dumbbell)",
@@ -928,7 +970,8 @@
       "Step:7 Then, inhale and slowly begin to lower the dumbbells back to the starting position.",
       "Step:8 Repeat for the recommended amount of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/slDvUAU.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/slDvUAU.gif",
+    "catalogExerciseId": "fp_hammer_curl"
   },
   {
     "hevyTitle": "EZ Bar Biceps Curl",
@@ -948,7 +991,8 @@
       "Step:4 Pause for a moment at the top, then inhale as you slowly lower the barbell back down to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/6TG6x2w.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/6TG6x2w.gif",
+    "catalogExerciseId": "fp_z_bar_curl"
   },
   {
     "hevyTitle": "Preacher Curl (Barbell)",
@@ -969,7 +1013,8 @@
       "Step:5 Inhale and slowly lower the barbell back down to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/qOgPVf6.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/qOgPVf6.gif",
+    "catalogExerciseId": "fp_z_bar_preacher_curl"
   },
   {
     "hevyTitle": "Pinwheel Curl (Dumbbell)",
@@ -991,7 +1036,8 @@
       "Step:6 Inhale and slowly begin to lower the dumbbells back to the starting position.",
       "Step:7 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/Qyk5J3p.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/Qyk5J3p.gif",
+    "catalogExerciseId": "fp_dumbbell_preacher_curl"
   },
   {
     "hevyTitle": "Triceps Pushdown",
@@ -1013,7 +1059,8 @@
       "Step:6 Pause for a moment, then inhale and slowly return the bar to the starting position.",
       "Step:7 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/3ZflifB.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/3ZflifB.gif",
+    "catalogExerciseId": "fp_push_down"
   },
   {
     "hevyTitle": "Triceps Extension (Dumbbell)",
@@ -1033,7 +1080,8 @@
       "Step:4 Pause for a moment, then straighten your arms and return to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/kont8Ut.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/kont8Ut.gif",
+    "catalogExerciseId": "fp_dumbbell_triceps_extension"
   },
   {
     "hevyTitle": "Triceps Dip",
@@ -1054,7 +1102,8 @@
       "Step:4 Pause for a moment at the bottom, then push yourself back up to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/X6C6i5Y.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/X6C6i5Y.gif",
+    "catalogExerciseId": "fp_triceps_dips"
   },
   {
     "hevyTitle": "Seated Triceps Press",
@@ -1075,7 +1124,8 @@
       "Step:4 Pause for a moment, then push yourself back up to the starting position by straightening your arms.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/BRImeP8.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/BRImeP8.gif",
+    "catalogExerciseId": "fp_triceps_dip_machine"
   },
   {
     "hevyTitle": "Crunch",
@@ -1095,7 +1145,8 @@
       "Step:4 Pause for a moment at the top, then slowly lower your shoulders back down to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/TFqbd8t.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/TFqbd8t.gif",
+    "catalogExerciseId": "fp_crunch"
   },
   {
     "hevyTitle": "Crunch (Machine)",
@@ -1116,7 +1167,8 @@
       "Step:5 Pause for a moment at the top, then slowly release and return to the starting position.",
       "Step:6 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/Wgaz7pm.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/Wgaz7pm.gif",
+    "catalogExerciseId": "fp_seated_crunch_machine"
   },
   {
     "hevyTitle": "Cable Crunch",
@@ -1136,7 +1188,8 @@
       "Step:4 Pause for a moment at the bottom, then slowly return to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/WW95auq.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/WW95auq.gif",
+    "catalogExerciseId": "fp_kneeling_cable_crunch"
   },
   {
     "hevyTitle": "Cable Twist (Up to down)",
@@ -1158,7 +1211,8 @@
       "Step:5 Repeat the rotation to the opposite side.",
       "Step:6 Continue alternating sides for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/fhZQPlV.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/fhZQPlV.gif",
+    "catalogExerciseId": "fp_standing_cable_low_to_high_twist"
   },
   {
     "hevyTitle": "Hanging Leg Raise",
@@ -1178,7 +1232,8 @@
       "Step:4 Pause for a moment at the top, then slowly lower your legs back down to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/I3tsCnC.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/I3tsCnC.gif",
+    "catalogExerciseId": "fp_hanging_leg_raises"
   },
   {
     "hevyTitle": "Lying Leg Raise",
@@ -1198,7 +1253,8 @@
       "Step:4 Pause for a moment at the top, then slowly lower your legs back down to the starting position.",
       "Step:5 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/WhuFnR7.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/WhuFnR7.gif",
+    "catalogExerciseId": "fp_leg_raise"
   },
   {
     "hevyTitle": "Side Bend (Dumbbell)",
@@ -1217,7 +1273,8 @@
       "Step:3 Pause for a moment, then slowly return to the starting position.",
       "Step:4 Repeat for the desired number of repetitions, then switch sides and repeat."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/IpONWYv.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/IpONWYv.gif",
+    "catalogExerciseId": "fp_dumbbell_side_bend"
   },
   {
     "hevyTitle": "Plank",
@@ -1241,7 +1298,8 @@
       "Step:7 Lower your body back down to the starting position.",
       "Step:8 Repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/VBAWRPG.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/VBAWRPG.gif",
+    "catalogExerciseId": "fp_weighted_front_plank"
   },
   {
     "hevyTitle": "Landmine 180",
@@ -1261,7 +1319,8 @@
       "Step:3 As you reach the bottom of the movement, quickly reverse the motion and rotate your torso to the left, swinging the barbell up and across your body towards your left shoulder.",
       "Step:4 Continue this twisting motion, alternating sides, for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/QYysSLV.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/QYysSLV.gif",
+    "catalogExerciseId": "fp_landmine_twist"
   },
   {
     "hevyTitle": "Running",
@@ -1283,7 +1342,8 @@
       "Step:4 Maintain a steady pace and continue jogging for the desired duration or distance.",
       "Step:5 Remember to breathe deeply and maintain good posture throughout the exercise."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/oLrKqDH.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/oLrKqDH.gif",
+    "catalogExerciseId": "fp_running"
   },
   {
     "hevyTitle": "Rowing Machine",
@@ -1295,7 +1355,8 @@
     "targetMuscle": "cardio",
     "secondaryMuscles": [],
     "instructions": [],
-    "gifUrl": null
+    "gifUrl": null,
+    "catalogExerciseId": "exdb_rowing_machine"
   },
   {
     "hevyTitle": "Boxing",
@@ -1317,7 +1378,8 @@
       "Step:4 Twist your torso and engage your core muscles to generate power in the punch.",
       "Step:5 Snap your arm back to the starting position and repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/hoXt6wv.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/hoXt6wv.gif",
+    "catalogExerciseId": "fp_shadow_boxing"
   },
   {
     "hevyTitle": "Sled Push",
@@ -1329,7 +1391,8 @@
     "targetMuscle": "full_body",
     "secondaryMuscles": [],
     "instructions": [],
-    "gifUrl": null
+    "gifUrl": null,
+    "catalogExerciseId": "exdb_sled_push"
   },
   {
     "hevyTitle": "Throwing Ball (Box)",
@@ -1351,6 +1414,7 @@
       "Step:5 Release the ball at the top of the movement and catch it on the way down.",
       "Step:6 Lower your body back into the squat position and repeat for the desired number of repetitions."
     ],
-    "gifUrl": "https://static.exercisedb.dev/media/PsVS1QP.gif"
+    "gifUrl": "https://static.exercisedb.dev/media/PsVS1QP.gif",
+    "catalogExerciseId": "fp_boxing_right_cross"
   }
 ]

@@ -22,8 +22,12 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "external_exercise_id", length = 50)
-    private String externalExerciseId;
+    /**
+     * Business key of the exercise in Fitness.Catalog.Api, for example {@code fp_barbell_curl}.
+     * Null for exercises created by a user by hand.
+     */
+    @Column(name = "catalog_exercise_id", length = 150)
+    private String catalogExerciseId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -34,6 +38,13 @@ public class Exercise {
 
     @Column(name = "gif_url", length = 500)
     private String gifUrl;
+
+    /**
+     * Set when an animation was copied from the catalogue, so clients know that
+     * {@code GET /api/exercise/{id}/image} will return something.
+     */
+    @Column(name = "image_file_name", length = 255)
+    private String imageFileName;
 
     @Column(name = "equipment_category", length = 50)
     private String equipmentCategory;

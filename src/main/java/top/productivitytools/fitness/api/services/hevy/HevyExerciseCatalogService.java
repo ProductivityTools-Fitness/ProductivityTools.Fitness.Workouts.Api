@@ -82,9 +82,9 @@ public class HevyExerciseCatalogService {
 
         int createdCount = 0;
         for (HevyExerciseCatalogItem item : catalogItems) {
-            if (item.externalExerciseId() != null && !item.externalExerciseId().isBlank()) {
-                Optional<Exercise> byExtId = exerciseRepository.findByExternalExerciseId(item.externalExerciseId());
-                if (byExtId.isPresent()) {
+            if (item.catalogExerciseId() != null && !item.catalogExerciseId().isBlank()) {
+                Optional<Exercise> byCatalogId = exerciseRepository.findByCatalogExerciseId(item.catalogExerciseId());
+                if (byCatalogId.isPresent()) {
                     continue;
                 }
                 List<Exercise> byName = exerciseRepository.findAvailableExercisesByName(null, item.name());
@@ -94,7 +94,7 @@ public class HevyExerciseCatalogService {
 
                 Exercise exercise = new Exercise();
                 exercise.setName(item.name());
-                exercise.setExternalExerciseId(item.externalExerciseId());
+                exercise.setCatalogExerciseId(item.catalogExerciseId());
                 exercise.setIsSystem(true);
                 exercise.setUser(null);
                 exercise.setBodyCategory(item.bodyCategory());
@@ -114,7 +114,7 @@ public class HevyExerciseCatalogService {
 
                 Exercise exercise = new Exercise();
                 exercise.setName(item.name());
-                exercise.setExternalExerciseId(null);
+                exercise.setCatalogExerciseId(null);
                 exercise.setIsSystem(true);
                 exercise.setUser(null);
                 exercise.setBodyCategory(item.bodyCategory());

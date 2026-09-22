@@ -188,10 +188,10 @@ public class HevyImportService {
         Optional<HevyExerciseCatalogItem> catalogOpt = hevyExerciseCatalogService.findMapping(title);
         if (catalogOpt.isPresent()) {
             HevyExerciseCatalogItem mapping = catalogOpt.get();
-            if (mapping.externalExerciseId() != null && !mapping.externalExerciseId().isBlank()) {
-                Optional<Exercise> byExtId = exerciseRepository.findByExternalExerciseId(mapping.externalExerciseId());
-                if (byExtId.isPresent()) {
-                    Exercise found = byExtId.get();
+            if (mapping.catalogExerciseId() != null && !mapping.catalogExerciseId().isBlank()) {
+                Optional<Exercise> byCatalogId = exerciseRepository.findByCatalogExerciseId(mapping.catalogExerciseId());
+                if (byCatalogId.isPresent()) {
+                    Exercise found = byCatalogId.get();
                     cache.put(cacheKey, found);
                     return found;
                 }
@@ -207,7 +207,7 @@ public class HevyImportService {
             // Fallback: create from catalog mapping if not yet in database
             Exercise mappedEx = new Exercise();
             mappedEx.setName(mapping.name());
-            mappedEx.setExternalExerciseId(mapping.externalExerciseId());
+            mappedEx.setCatalogExerciseId(mapping.catalogExerciseId());
             mappedEx.setIsSystem(true);
             mappedEx.setUser(null);
             mappedEx.setBodyCategory(mapping.bodyCategory());
@@ -223,7 +223,7 @@ public class HevyImportService {
 
         // 2. Check by template ID if present
         if (templateId != null) {
-            Optional<Exercise> byTpl = exerciseRepository.findByExternalExerciseId(templateId);
+            Optional<Exercise> byTpl = exerciseRepository.findByCatalogExerciseId(templateId);
             if (byTpl.isPresent()) {
                 cache.put(cacheKey, byTpl.get());
                 return byTpl.get();
@@ -252,7 +252,7 @@ public class HevyImportService {
         // 5. Create new Exercise for user (standalone fallback for uncataloged exercises)
         Exercise newEx = new Exercise();
         newEx.setName(title);
-        newEx.setExternalExerciseId(templateId);
+        newEx.setCatalogExerciseId(templateId);
         newEx.setUser(user);
         newEx.setIsSystem(false);
         newEx.setEquipmentCategory(exNode.path("equipment_category").asText(null));

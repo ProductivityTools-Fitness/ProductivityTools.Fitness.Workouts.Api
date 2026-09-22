@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ExerciseDbRepository extends JpaRepository<Exercise, Long> {
+public interface CatalogExerciseRepository extends JpaRepository<Exercise, Long> {
 
-    Optional<Exercise> findByExternalExerciseId(String externalExerciseId);
+    Optional<Exercise> findByCatalogExerciseId(String catalogExerciseId);
 
-    List<Exercise> findByExternalExerciseIdIn(List<String> externalExerciseIds);
+    List<Exercise> findByCatalogExerciseIdIn(List<String> catalogExerciseIds);
 }

@@ -40,4 +40,11 @@ tasks.named('bootJar') {
 
 tasks.named('test') {
 	useJUnitPlatform()
+
+	// Forwards the opt-in flag for CatalogIntegrationTest, which needs Fitness.Catalog.Api
+	// running and writes to a real database. Gradle does not pass -D properties to the test
+	// JVM on its own.
+	if (System.getProperty('catalog.integration') != null) {
+		systemProperty 'catalog.integration', System.getProperty('catalog.integration')
+	}
 }

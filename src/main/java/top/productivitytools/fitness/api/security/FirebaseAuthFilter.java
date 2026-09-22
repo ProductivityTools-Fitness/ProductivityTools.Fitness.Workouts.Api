@@ -95,7 +95,19 @@ public class FirebaseAuthFilter extends OncePerRequestFilter {
         if (path == null || path.isEmpty()) {
             path = request.getRequestURI();
         }
-        return path != null && (path.startsWith("/api/debug") || path.startsWith("/error"));
+        if (path == null) {
+            return false;
+        }
+        // Exercise animations are served to <img> tags, and a browser cannot attach an
+        // Authorization header to those. The endpoints expose nothing but pictures from the
+        // shared catalogue - no user data - so they are left open.
+        if (path.startsWith("/api/catalog/") && path.endsWith("/image")) {
+            return true;
+        }
+        if (path.startsWith("/api/exercise/") && path.endsWith("/image")) {
+            return true;
+        }
+        return path.startsWith("/api/debug") || path.startsWith("/error");
     }
 
     @Override
