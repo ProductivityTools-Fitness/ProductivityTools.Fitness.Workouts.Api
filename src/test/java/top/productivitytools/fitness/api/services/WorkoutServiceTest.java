@@ -212,6 +212,31 @@ class WorkoutServiceTest {
     }
 
     @Test
+    void updateExerciseRestTimer_UpdatesRestTimerAndSaves() {
+        WorkoutExercise we = new WorkoutExercise();
+        we.setId(50L);
+        we.setRestTimerSeconds(90);
+
+        when(workoutExerciseRepository.findById(50L)).thenReturn(Optional.of(we));
+        when(workoutExerciseRepository.save(any(WorkoutExercise.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        WorkoutExercise updated = workoutService.updateExerciseRestTimer(50L, 60);
+
+        assertNotNull(updated);
+        assertEquals(60, updated.getRestTimerSeconds());
+        verify(workoutExerciseRepository).save(we);
+    }
+
+    @Test
+    void updateExerciseRestTimer_RejectsNegativeValue() {
+        ResponseStatusException ex = assertThrows(ResponseStatusException.class,
+                () -> workoutService.updateExerciseRestTimer(50L, -5));
+
+        assertEquals(HttpStatus.BAD_REQUEST, ex.getStatusCode());
+        verify(workoutExerciseRepository, never()).save(any(WorkoutExercise.class));
+    }
+
+    @Test
     void completeWorkout_SetsStatusCompletedAndCalculatesDurationAndClearsPrevStats() {
         Workout workout = new Workout();
         workout.setId(200L);

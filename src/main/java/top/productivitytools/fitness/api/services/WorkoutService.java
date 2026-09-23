@@ -286,6 +286,25 @@ public class WorkoutService {
         return workoutExerciseRepository.save(workoutExercise);
     }
 
+    /**
+     * Changes the rest timer of a single exercise in a workout. Because a newly added exercise
+     * copies the rest timer from the last workout it appeared in, setting it here also becomes the
+     * value used in future workouts.
+     */
+    @Transactional
+    public WorkoutExercise updateExerciseRestTimer(Long workoutExerciseId, Integer restTimerSeconds) {
+        if (workoutExerciseId == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "WorkoutExercise ID must be provided");
+        }
+        if (restTimerSeconds == null || restTimerSeconds < 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "restTimerSeconds must be zero or greater");
+        }
+        WorkoutExercise workoutExercise = workoutExerciseRepository.findById(workoutExerciseId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "WorkoutExercise not found with id: " + workoutExerciseId));
+        workoutExercise.setRestTimerSeconds(restTimerSeconds);
+        return workoutExerciseRepository.save(workoutExercise);
+    }
+
     @Transactional
     public Workout completeWorkout(Long workoutId) {
         if (workoutId == null) {

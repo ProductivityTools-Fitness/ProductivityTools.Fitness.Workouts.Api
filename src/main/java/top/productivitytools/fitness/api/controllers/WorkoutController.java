@@ -110,6 +110,19 @@ public class WorkoutController {
         return workoutService.updateExerciseNotes(request.workoutExerciseId(), request.notes());
     }
 
+    public record SaveExerciseRestTimerRequest(
+        Long workoutExerciseId,
+        Integer restTimerSeconds
+    ) {}
+
+    @PostMapping("/updateExerciseRestTimer")
+    public WorkoutExercise updateExerciseRestTimer(@RequestBody SaveExerciseRestTimerRequest request) {
+        if (request == null || request.workoutExerciseId() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "WorkoutExercise ID must be provided in request body");
+        }
+        return workoutService.updateExerciseRestTimer(request.workoutExerciseId(), request.restTimerSeconds());
+    }
+
     public record CompleteWorkoutRequest(
         Long workoutId
     ) {}
