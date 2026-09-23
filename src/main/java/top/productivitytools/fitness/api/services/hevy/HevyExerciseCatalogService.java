@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 import top.productivitytools.fitness.api.entities.Exercise;
+import top.productivitytools.fitness.api.entities.TrackingType;
 import top.productivitytools.fitness.api.repositories.ExerciseRepository;
 
 import java.io.InputStream;
@@ -85,10 +86,12 @@ public class HevyExerciseCatalogService {
             if (item.catalogExerciseId() != null && !item.catalogExerciseId().isBlank()) {
                 Optional<Exercise> byCatalogId = exerciseRepository.findByCatalogExerciseId(item.catalogExerciseId());
                 if (byCatalogId.isPresent()) {
+                    syncTrackingType(byCatalogId.get(), item);
                     continue;
                 }
                 List<Exercise> byName = exerciseRepository.findAvailableExercisesByName(null, item.name());
                 if (!byName.isEmpty()) {
+                    syncTrackingType(byName.get(0), item);
                     continue;
                 }
 
@@ -103,12 +106,14 @@ public class HevyExerciseCatalogService {
                 exercise.setSecondaryMuscles(item.secondaryMuscles() != null ? item.secondaryMuscles() : List.of());
                 exercise.setInstructions(item.instructions() != null ? item.instructions() : List.of());
                 exercise.setGifUrl(item.gifUrl());
+                exercise.setTrackingType(item.trackingType());
                 exerciseRepository.save(exercise);
                 createdCount++;
             } else {
                 // Standalone unmapped exercise
                 List<Exercise> byName = exerciseRepository.findAvailableExercisesByName(null, item.name());
                 if (!byName.isEmpty()) {
+                    syncTrackingType(byName.get(0), item);
                     continue;
                 }
 
@@ -123,6 +128,7 @@ public class HevyExerciseCatalogService {
                 exercise.setSecondaryMuscles(item.secondaryMuscles() != null ? item.secondaryMuscles() : List.of());
                 exercise.setInstructions(item.instructions() != null ? item.instructions() : List.of());
                 exercise.setGifUrl(null);
+                exercise.setTrackingType(item.trackingType());
                 exerciseRepository.save(exercise);
                 createdCount++;
             }
@@ -132,5 +138,24 @@ public class HevyExerciseCatalogService {
             log.info("Preloaded {} new exercises from catalog into database.", createdCount);
         }
         return createdCount;
+    }
+
+    /**
+     * Brings an exercise that already exists in the database in line with the mapping file.
+     *
+     * <p>Only ever moves away from the {@code WEIGHT_REPS} default: exercises preloaded before
+     * tracking types existed all carry it, whereas a type set by a Hevy import or by hand is a
+     * deliberate value and must survive.
+     */
+    private void syncTrackingType(Exercise exercise, HevyExerciseCatalogItem item) {
+        if (item.trackingType() == TrackingType.WEIGHT_REPS) {
+            return;
+        }
+        if (exercise.getTrackingType() != TrackingType.WEIGHT_REPS) {
+            return;
+        }
+        exercise.setTrackingType(item.trackingType());
+        exerciseRepository.save(exercise);
+        log.info("Updated tracking type of '{}' to {}", exercise.getName(), item.trackingType());
     }
 }

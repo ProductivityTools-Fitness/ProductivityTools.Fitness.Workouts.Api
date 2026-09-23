@@ -319,7 +319,8 @@
       "Step:5 Continue alternating between lifting your right and left foot for the desired number of repetitions."
     ],
     "gifUrl": "https://static.exercisedb.dev/media/sVQCCeG.gif",
-    "catalogExerciseId": "exdb_wall_sit"
+    "catalogExerciseId": "exdb_wall_sit",
+    "trackingType": "DURATION"
   },
   {
     "hevyTitle": "Box Jump",
@@ -1299,7 +1300,8 @@
       "Step:8 Repeat for the desired number of repetitions."
     ],
     "gifUrl": "https://static.exercisedb.dev/media/VBAWRPG.gif",
-    "catalogExerciseId": "fp_weighted_front_plank"
+    "catalogExerciseId": "fp_weighted_front_plank",
+    "trackingType": "DURATION"
   },
   {
     "hevyTitle": "Landmine 180",
@@ -1343,7 +1345,8 @@
       "Step:5 Remember to breathe deeply and maintain good posture throughout the exercise."
     ],
     "gifUrl": "https://static.exercisedb.dev/media/oLrKqDH.gif",
-    "catalogExerciseId": "fp_running"
+    "catalogExerciseId": "fp_running",
+    "trackingType": "DISTANCE_DURATION"
   },
   {
     "hevyTitle": "Rowing Machine",
@@ -1356,7 +1359,8 @@
     "secondaryMuscles": [],
     "instructions": [],
     "gifUrl": null,
-    "catalogExerciseId": "exdb_rowing_machine"
+    "catalogExerciseId": "exdb_rowing_machine",
+    "trackingType": "DISTANCE_DURATION"
   },
   {
     "hevyTitle": "Boxing",

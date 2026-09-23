@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import top.productivitytools.fitness.api.dto.requests.AddExercisesRequest;
 import top.productivitytools.fitness.api.dto.requests.AddSetRequest;
+import top.productivitytools.fitness.api.dto.requests.SaveSetRequest;
 import top.productivitytools.fitness.api.dto.responses.WorkoutSummaryDto;
 import top.productivitytools.fitness.api.entities.*;
 import top.productivitytools.fitness.api.repositories.*;
@@ -218,7 +219,11 @@ class WorkoutServiceTest {
         workout.setStatus("IN_PROGRESS");
 
         WorkoutExercise we = new WorkoutExercise();
-        WorkoutSet set = we.addSet(new BigDecimal("60.00"), 10, new BigDecimal("55.00"), 10);
+        WorkoutSet pastSet = new WorkoutSet();
+        pastSet.setWeightKg(new BigDecimal("55.00"));
+        pastSet.setReps(10);
+        WorkoutSet set = we.addSetFrom(pastSet);
+        set.setWeightKg(new BigDecimal("60.00"));
         workout.getExercises().add(we);
 
         when(workoutRepository.findById(200L)).thenReturn(Optional.of(workout));
@@ -411,5 +416,49 @@ class WorkoutServiceTest {
 
         assertEquals(HttpStatus.FORBIDDEN, ex.getStatusCode());
         verify(workoutRepository, never()).findSummariesByUserId(any());
+    }
+
+    @Test
+    void saveSet_TimedSet_StoresDurationAndLeavesWeightUntouched() {
+        WorkoutSet set = new WorkoutSet();
+        set.setId(70L);
+        set.setSetNumber(1);
+        set.setWeightKg(BigDecimal.ZERO);
+        set.setReps(0);
+
+        when(workoutSetRepository.findById(70L)).thenReturn(Optional.of(set));
+        when(workoutSetRepository.save(any(WorkoutSet.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        WorkoutSet saved = workoutService.saveSet(
+                new SaveSetRequest(70L, null, null, 90, null, true));
+
+        assertEquals(90, saved.getDurationSeconds());
+        assertEquals(0, saved.getWeightKg().compareTo(BigDecimal.ZERO));
+        assertTrue(saved.getIsCompleted());
+    }
+
+    /**
+     * A partial update must not wipe the other measurements: the UI saves one cell at a time,
+     * so a request carrying only the weight arrives with a null duration.
+     */
+    @Test
+    void saveSet_OmittedFields_KeepExistingValues() {
+        WorkoutSet set = new WorkoutSet();
+        set.setId(71L);
+        set.setSetNumber(1);
+        set.setWeightKg(BigDecimal.ZERO);
+        set.setReps(0);
+        set.setDurationSeconds(60);
+        set.setDistanceMeters(new BigDecimal("1000.00"));
+
+        when(workoutSetRepository.findById(71L)).thenReturn(Optional.of(set));
+        when(workoutSetRepository.save(any(WorkoutSet.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        WorkoutSet saved = workoutService.saveSet(
+                new SaveSetRequest(71L, new BigDecimal("12.50"), null, null, null, null));
+
+        assertEquals(0, saved.getWeightKg().compareTo(new BigDecimal("12.50")));
+        assertEquals(60, saved.getDurationSeconds());
+        assertEquals(0, saved.getDistanceMeters().compareTo(new BigDecimal("1000.00")));
     }
 }

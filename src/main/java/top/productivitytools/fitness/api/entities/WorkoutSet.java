@@ -34,11 +34,28 @@ public class WorkoutSet {
     @Column(nullable = false)
     private Integer reps = 0;
 
+    /**
+     * Time under tension, for exercises held rather than repeated (plank, wall sit).
+     * Null for a plain weight x reps set.
+     */
+    @Column(name = "duration_seconds")
+    private Integer durationSeconds;
+
+    /** Distance covered, for cardio (running, rowing machine). Null otherwise. */
+    @Column(name = "distance_meters", precision = 10, scale = 2)
+    private BigDecimal distanceMeters;
+
     @Transient
     private BigDecimal prevWeightKg;
 
     @Transient
     private Integer prevReps;
+
+    @Transient
+    private Integer prevDurationSeconds;
+
+    @Transient
+    private BigDecimal prevDistanceMeters;
 
     @Column(name = "is_completed", nullable = false)
     private Boolean isCompleted = false;

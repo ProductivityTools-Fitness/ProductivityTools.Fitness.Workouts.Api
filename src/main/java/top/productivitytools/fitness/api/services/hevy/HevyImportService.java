@@ -11,6 +11,7 @@ import top.productivitytools.fitness.api.dto.hevy.HevyImportRequest;
 import top.productivitytools.fitness.api.dto.hevy.HevyImportResponse;
 import top.productivitytools.fitness.api.entities.Exercise;
 import top.productivitytools.fitness.api.entities.FitnessUser;
+import top.productivitytools.fitness.api.entities.TrackingType;
 import top.productivitytools.fitness.api.entities.Workout;
 import top.productivitytools.fitness.api.entities.WorkoutExercise;
 import top.productivitytools.fitness.api.entities.WorkoutSet;
@@ -125,6 +126,8 @@ public class HevyImportService {
                             double weightKg = setNode.path("weight_kg").asDouble(0.0);
                             ws.setWeightKg(BigDecimal.valueOf(weightKg));
                             ws.setReps(setNode.path("reps").asInt(0));
+                            ws.setDurationSeconds(readInteger(setNode, "duration_seconds"));
+                            ws.setDistanceMeters(readDecimal(setNode, "distance_meters"));
                             ws.setIsCompleted(true);
                             we.getSets().add(ws);
                         }
@@ -137,6 +140,16 @@ public class HevyImportService {
                         ws.setReps(0);
                         ws.setIsCompleted(true);
                         we.getSets().add(ws);
+                    }
+
+                    // An exercise imported before this feature existed, or created from a mapping
+                    // that does not declare a type, still carries the WEIGHT_REPS default. If the
+                    // sets themselves show a stopwatch or a distance, correct the exercise once.
+                    TrackingType detected = detectTrackingType(we.getSets());
+                    if (detected != TrackingType.WEIGHT_REPS
+                            && exercise.getTrackingType() == TrackingType.WEIGHT_REPS) {
+                        exercise.setTrackingType(detected);
+                        exerciseRepository.save(exercise);
                     }
 
                     workout.getExercises().add(we);
@@ -216,6 +229,7 @@ public class HevyImportService {
             mappedEx.setSecondaryMuscles(mapping.secondaryMuscles() != null ? mapping.secondaryMuscles() : List.of());
             mappedEx.setInstructions(mapping.instructions() != null ? mapping.instructions() : List.of());
             mappedEx.setGifUrl(mapping.gifUrl());
+            mappedEx.setTrackingType(mapping.trackingType());
             mappedEx = exerciseRepository.save(mappedEx);
             cache.put(cacheKey, mappedEx);
             return mappedEx;
@@ -263,6 +277,60 @@ public class HevyImportService {
 
         cache.put(cacheKey, newEx);
         return newEx;
+    }
+
+    /**
+     * Hevy sends an explicit {@code null} for fields that do not apply to a set, so a plain
+     * {@code asInt(0)} would turn "not measured" into a real zero.
+     */
+    private Integer readInteger(JsonNode node, String field) {
+        JsonNode value = node.get(field);
+        if (value == null || value.isNull() || !value.isNumber()) {
+            return null;
+        }
+        return value.asInt();
+    }
+
+    /** Decimal counterpart of {@link #readInteger}. */
+    private BigDecimal readDecimal(JsonNode node, String field) {
+        JsonNode value = node.get(field);
+        if (value == null || value.isNull() || !value.isNumber()) {
+            return null;
+        }
+        return BigDecimal.valueOf(value.asDouble());
+    }
+
+    /**
+     * Derives how an exercise is measured from the sets Hevy recorded for it.
+     *
+     * <p>Deliberately never returns {@code REPS_ONLY}: a bodyweight exercise logged at 0 kg is
+     * indistinguishable from a warm-up with an empty bar, and guessing wrong would hide the
+     * weight column. Reps-only exercises are declared in the catalogue instead.
+     */
+    private TrackingType detectTrackingType(List<WorkoutSet> sets) {
+        boolean hasDuration = false;
+        boolean hasDistance = false;
+        boolean hasWeight = false;
+
+        for (WorkoutSet set : sets) {
+            if (set.getDurationSeconds() != null && set.getDurationSeconds() > 0) {
+                hasDuration = true;
+            }
+            if (set.getDistanceMeters() != null && set.getDistanceMeters().signum() > 0) {
+                hasDistance = true;
+            }
+            if (set.getWeightKg() != null && set.getWeightKg().signum() > 0) {
+                hasWeight = true;
+            }
+        }
+
+        if (hasDistance) {
+            return TrackingType.DISTANCE_DURATION;
+        }
+        if (hasDuration) {
+            return hasWeight ? TrackingType.DURATION_WEIGHT : TrackingType.DURATION;
+        }
+        return TrackingType.WEIGHT_REPS;
     }
 
     private String normalizeExerciseAlias(String title) {

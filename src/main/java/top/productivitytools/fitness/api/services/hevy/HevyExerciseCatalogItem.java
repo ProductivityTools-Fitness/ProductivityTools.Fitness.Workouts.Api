@@ -1,5 +1,7 @@
 package top.productivitytools.fitness.api.services.hevy;
 
+import top.productivitytools.fitness.api.entities.TrackingType;
+
 import java.util.List;
 
 /**
@@ -8,6 +10,8 @@ import java.util.List;
  *
  * @param catalogExerciseId business key in Fitness.Catalog.Api, or null when this exercise has
  *                          no counterpart in the catalogue and lives only locally
+ * @param trackingType      how a set of this exercise is measured; absent in the JSON means
+ *                          the usual weight x reps
  */
 public record HevyExerciseCatalogItem(
         String hevyTitle,
@@ -19,5 +23,12 @@ public record HevyExerciseCatalogItem(
         String targetMuscle,
         List<String> secondaryMuscles,
         List<String> instructions,
-        String gifUrl
-) {}
+        String gifUrl,
+        TrackingType trackingType
+) {
+    public HevyExerciseCatalogItem {
+        if (trackingType == null) {
+            trackingType = TrackingType.WEIGHT_REPS;
+        }
+    }
+}

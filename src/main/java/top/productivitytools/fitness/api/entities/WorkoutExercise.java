@@ -47,27 +47,46 @@ public class WorkoutExercise {
     @Column(name = "created_at")
     private OffsetDateTime createdAt = OffsetDateTime.now();
 
+    /**
+     * Adds a set shaped like the last one of this exercise. Copying the previous values
+     * matters for timed exercises: a second plank set should start from the first one's
+     * duration, not from an empty weight x reps row.
+     */
     public WorkoutSet addSet() {
         WorkoutSet previousSet = sets.isEmpty() ? null : sets.get(sets.size() - 1);
-        BigDecimal defaultWeight = previousSet != null ? previousSet.getWeightKg() : BigDecimal.ZERO;
-        Integer defaultReps = previousSet != null ? previousSet.getReps() : 0;
-        return addSet(defaultWeight, defaultReps);
+        WorkoutSet newSet = addSet(
+                previousSet != null ? previousSet.getWeightKg() : BigDecimal.ZERO,
+                previousSet != null ? previousSet.getReps() : 0);
+        if (previousSet != null) {
+            newSet.setDurationSeconds(previousSet.getDurationSeconds());
+            newSet.setDistanceMeters(previousSet.getDistanceMeters());
+        }
+        return newSet;
     }
 
     public WorkoutSet addSet(BigDecimal weightKg, Integer reps) {
-        return addSet(weightKg, reps, null, null);
-    }
-
-    public WorkoutSet addSet(BigDecimal weightKg, Integer reps, BigDecimal prevWeightKg, Integer prevReps) {
         WorkoutSet newSet = new WorkoutSet();
         newSet.setWorkoutExercise(this);
         newSet.setSetNumber(sets.size() + 1);
         newSet.setWeightKg(weightKg != null ? weightKg : BigDecimal.ZERO);
         newSet.setReps(reps != null ? reps : 0);
-        newSet.setPrevWeightKg(prevWeightKg);
-        newSet.setPrevReps(prevReps);
         newSet.setIsCompleted(false);
         this.sets.add(newSet);
+        return newSet;
+    }
+
+    /**
+     * Adds a set pre-filled from the same set number of a past workout, and records those
+     * past values as the "previous" hints shown next to the inputs.
+     */
+    public WorkoutSet addSetFrom(WorkoutSet pastSet) {
+        WorkoutSet newSet = addSet(pastSet.getWeightKg(), pastSet.getReps());
+        newSet.setDurationSeconds(pastSet.getDurationSeconds());
+        newSet.setDistanceMeters(pastSet.getDistanceMeters());
+        newSet.setPrevWeightKg(pastSet.getWeightKg());
+        newSet.setPrevReps(pastSet.getReps());
+        newSet.setPrevDurationSeconds(pastSet.getDurationSeconds());
+        newSet.setPrevDistanceMeters(pastSet.getDistanceMeters());
         return newSet;
     }
 }

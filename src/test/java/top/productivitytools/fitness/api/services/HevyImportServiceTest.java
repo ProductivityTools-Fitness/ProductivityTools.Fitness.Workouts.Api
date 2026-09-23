@@ -15,7 +15,9 @@ import top.productivitytools.fitness.api.dto.hevy.HevyImportRequest;
 import top.productivitytools.fitness.api.dto.hevy.HevyImportResponse;
 import top.productivitytools.fitness.api.entities.Exercise;
 import top.productivitytools.fitness.api.entities.FitnessUser;
+import top.productivitytools.fitness.api.entities.TrackingType;
 import top.productivitytools.fitness.api.entities.Workout;
+import top.productivitytools.fitness.api.entities.WorkoutSet;
 import top.productivitytools.fitness.api.repositories.ExerciseRepository;
 import top.productivitytools.fitness.api.repositories.WorkoutRepository;
 import top.productivitytools.fitness.api.security.UserContext;
@@ -24,6 +26,7 @@ import top.productivitytools.fitness.api.services.hevy.HevyImportService;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -224,7 +227,8 @@ class HevyImportServiceTest {
         top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem catalogItem =
                 new top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem(
                         "Bench Press (Barbell)", "Wyciskanie leżąc (sztanga)", "barbell bench press",
-                        "fp_barbell_bench_press", "barbell", "chest", "pectorals", List.of("triceps"), List.of(), "http://gif"
+                        "fp_barbell_bench_press", "barbell", "chest", "pectorals", List.of("triceps"), List.of(), "http://gif",
+                        TrackingType.WEIGHT_REPS
                 );
 
         Map<String, Object> ex = Map.of(
@@ -270,7 +274,8 @@ class HevyImportServiceTest {
         top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem catalogItem =
                 new top.productivitytools.fitness.api.services.hevy.HevyExerciseCatalogItem(
                         "Rowing Machine", "Wioślarz (maszyna)", "Rowing Machine",
-                        null, "machine", "cardio", "cardio", List.of(), List.of(), null
+                        null, "machine", "cardio", "cardio", List.of(), List.of(), null,
+                        TrackingType.DISTANCE_DURATION
                 );
 
         Map<String, Object> ex = Map.of(
@@ -302,5 +307,139 @@ class HevyImportServiceTest {
                 w.getExercises().get(0).getExercise().getId().equals(20L) &&
                 w.getExercises().get(0).getExercise().getName().equals("Rowing Machine")
         ));
+    }
+
+    @Test
+    void importWorkouts_TimedExercise_KeepsDurationAndMarksExerciseAsTimed() {
+        Exercise plank = new Exercise();
+        plank.setId(30L);
+        plank.setName("front plank");
+        plank.setIsSystem(true);
+
+        Map<String, Object> ex = new HashMap<>();
+        ex.put("title", "Plank");
+        ex.put("sets", List.of(
+                setWithDuration(60),
+                setWithDuration(45)
+        ));
+        Map<String, Object> workoutData = Map.of(
+                "name", "Core",
+                "start_time", 1700000000,
+                "exercises", List.of(ex)
+        );
+
+        JsonNode workoutNode = objectMapper.valueToTree(workoutData);
+
+        when(hevyClient.resolveToken("test-token")).thenReturn("test-token");
+        when(hevyClient.fetchWorkouts("test-token")).thenReturn(List.of(workoutNode));
+        when(workoutRepository.findMaxWorkoutNumberByUserId(1L)).thenReturn(0);
+        when(workoutRepository.existsByUserIdAndStartTime(eq(1L), any(OffsetDateTime.class))).thenReturn(false);
+        when(hevyExerciseCatalogService.preloadAllExercises()).thenReturn(0);
+        when(hevyExerciseCatalogService.findMapping("Plank")).thenReturn(Optional.empty());
+        when(exerciseRepository.findAvailableExercisesByName(1L, "Plank")).thenReturn(List.of(plank));
+        when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        HevyImportRequest request = new HevyImportRequest("test-token");
+        hevyImportService.importWorkouts(request);
+
+        verify(workoutRepository).save(argThat(w -> {
+            List<WorkoutSet> sets = w.getExercises().get(0).getSets();
+            return sets.size() == 2
+                    && Integer.valueOf(60).equals(sets.get(0).getDurationSeconds())
+                    && Integer.valueOf(45).equals(sets.get(1).getDurationSeconds());
+        }));
+        assertEquals(TrackingType.DURATION, plank.getTrackingType());
+    }
+
+    @Test
+    void importWorkouts_WeightAndRepsOnly_LeavesDurationNullAndTypeUnchanged() {
+        Exercise bench = new Exercise();
+        bench.setId(31L);
+        bench.setName("barbell bench press");
+        bench.setIsSystem(true);
+
+        Map<String, Object> ex = Map.of(
+                "title", "Bench Press (Barbell)",
+                "sets", List.of(Map.of("weight_kg", 80.0, "reps", 8))
+        );
+        Map<String, Object> workoutData = Map.of(
+                "name", "Chest Day",
+                "start_time", 1700000000,
+                "exercises", List.of(ex)
+        );
+
+        JsonNode workoutNode = objectMapper.valueToTree(workoutData);
+
+        when(hevyClient.resolveToken("test-token")).thenReturn("test-token");
+        when(hevyClient.fetchWorkouts("test-token")).thenReturn(List.of(workoutNode));
+        when(workoutRepository.findMaxWorkoutNumberByUserId(1L)).thenReturn(0);
+        when(workoutRepository.existsByUserIdAndStartTime(eq(1L), any(OffsetDateTime.class))).thenReturn(false);
+        when(hevyExerciseCatalogService.preloadAllExercises()).thenReturn(0);
+        when(hevyExerciseCatalogService.findMapping("Bench Press (Barbell)")).thenReturn(Optional.empty());
+        when(exerciseRepository.findAvailableExercisesByName(1L, "Bench Press (Barbell)")).thenReturn(List.of(bench));
+        when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        hevyImportService.importWorkouts(new HevyImportRequest("test-token"));
+
+        verify(workoutRepository).save(argThat(w -> {
+            WorkoutSet set = w.getExercises().get(0).getSets().get(0);
+            return set.getDurationSeconds() == null
+                    && set.getDistanceMeters() == null;
+        }));
+        assertEquals(TrackingType.WEIGHT_REPS, bench.getTrackingType());
+    }
+
+    @Test
+    void importWorkouts_CardioExercise_KeepsDistanceAndMarksExerciseAsDistanceDuration() {
+        Exercise running = new Exercise();
+        running.setId(32L);
+        running.setName("run");
+        running.setIsSystem(true);
+
+        Map<String, Object> set = new HashMap<>();
+        set.put("weight_kg", 0.0);
+        set.put("reps", 0);
+        set.put("duration_seconds", 1800);
+        set.put("distance_meters", 5000.0);
+        // Hevy still sends an RPE; it is intentionally not stored.
+        set.put("rpe", 7.5);
+
+        Map<String, Object> ex = Map.of("title", "Running", "sets", List.of(set));
+        Map<String, Object> workoutData = Map.of(
+                "name", "Morning Run",
+                "start_time", 1700000000,
+                "exercises", List.of(ex)
+        );
+
+        JsonNode workoutNode = objectMapper.valueToTree(workoutData);
+
+        when(hevyClient.resolveToken("test-token")).thenReturn("test-token");
+        when(hevyClient.fetchWorkouts("test-token")).thenReturn(List.of(workoutNode));
+        when(workoutRepository.findMaxWorkoutNumberByUserId(1L)).thenReturn(0);
+        when(workoutRepository.existsByUserIdAndStartTime(eq(1L), any(OffsetDateTime.class))).thenReturn(false);
+        when(hevyExerciseCatalogService.preloadAllExercises()).thenReturn(0);
+        when(hevyExerciseCatalogService.findMapping("Running")).thenReturn(Optional.empty());
+        when(exerciseRepository.findAvailableExercisesByName(1L, "Running")).thenReturn(List.of(running));
+        when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        hevyImportService.importWorkouts(new HevyImportRequest("test-token"));
+
+        verify(workoutRepository).save(argThat(w -> {
+            WorkoutSet imported = w.getExercises().get(0).getSets().get(0);
+            return Integer.valueOf(1800).equals(imported.getDurationSeconds())
+                    && imported.getDistanceMeters().compareTo(new BigDecimal("5000")) == 0;
+        }));
+        assertEquals(TrackingType.DISTANCE_DURATION, running.getTrackingType());
+    }
+
+    /** Hevy sends the unused measurements as explicit nulls rather than omitting them. */
+    private Map<String, Object> setWithDuration(int seconds) {
+        Map<String, Object> set = new HashMap<>();
+        set.put("weight_kg", 0.0);
+        set.put("reps", 0);
+        set.put("duration_seconds", seconds);
+        set.put("distance_meters", null);
+        set.put("rpe", null);
+        return set;
     }
 }

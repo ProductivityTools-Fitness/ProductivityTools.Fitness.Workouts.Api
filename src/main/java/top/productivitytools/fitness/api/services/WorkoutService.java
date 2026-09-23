@@ -143,12 +143,7 @@ public class WorkoutService {
 
                 if (!pastSets.isEmpty()) {
                     for (WorkoutSet pastSet : pastSets) {
-                        workoutExercise.addSet(
-                                pastSet.getWeightKg(),
-                                pastSet.getReps(),
-                                pastSet.getWeightKg(),
-                                pastSet.getReps()
-                        );
+                        workoutExercise.addSetFrom(pastSet);
                     }
                 } else {
                     workoutExercise.addSet();
@@ -196,13 +191,7 @@ public class WorkoutService {
 
         WorkoutSet newSet;
         if (pastSetOpt.isPresent()) {
-            WorkoutSet pastSet = pastSetOpt.get();
-            newSet = workoutExercise.addSet(
-                    pastSet.getWeightKg(),
-                    pastSet.getReps(),
-                    pastSet.getWeightKg(),
-                    pastSet.getReps()
-            );
+            newSet = workoutExercise.addSetFrom(pastSetOpt.get());
         } else {
             newSet = workoutExercise.addSet();
         }
@@ -238,6 +227,12 @@ public class WorkoutService {
         }
         if (request.reps() != null) {
             workoutSet.setReps(request.reps());
+        }
+        if (request.durationSeconds() != null) {
+            workoutSet.setDurationSeconds(request.durationSeconds());
+        }
+        if (request.distanceMeters() != null) {
+            workoutSet.setDistanceMeters(request.distanceMeters());
         }
         if (request.status() != null) {
             workoutSet.setIsCompleted(request.status());
@@ -320,8 +315,7 @@ public class WorkoutService {
             for (WorkoutExercise we : workout.getExercises()) {
                 if (we.getSets() != null) {
                     for (WorkoutSet set : we.getSets()) {
-                        set.setPrevWeightKg(null);
-                        set.setPrevReps(null);
+                        clearPreviousStats(set);
                     }
                 }
             }
@@ -351,11 +345,9 @@ public class WorkoutService {
                 for (WorkoutSet set : we.getSets()) {
                     WorkoutSet pastSet = pastSetByNumber.get(set.getSetNumber());
                     if (pastSet != null) {
-                        set.setPrevWeightKg(pastSet.getWeightKg());
-                        set.setPrevReps(pastSet.getReps());
+                        copyPreviousStats(set, pastSet);
                     } else {
-                        set.setPrevWeightKg(null);
-                        set.setPrevReps(null);
+                        clearPreviousStats(set);
                     }
                 }
             }
@@ -369,8 +361,7 @@ public class WorkoutService {
         WorkoutExercise we = workoutSet.getWorkoutExercise();
         Workout workout = we != null ? we.getWorkout() : null;
         if (workout != null && "COMPLETED".equalsIgnoreCase(workout.getStatus())) {
-            workoutSet.setPrevWeightKg(null);
-            workoutSet.setPrevReps(null);
+            clearPreviousStats(workoutSet);
             return;
         }
         if (we == null || workout == null || workout.getUser() == null || workout.getUser().getId() == null || we.getExercise() == null || we.getExercise().getId() == null) {
@@ -385,11 +376,26 @@ public class WorkoutService {
             pastExerciseOpt.get().getSets().stream()
                     .filter(s -> workoutSet.getSetNumber().equals(s.getSetNumber()))
                     .findFirst()
-                    .ifPresent(pastSet -> {
-                        workoutSet.setPrevWeightKg(pastSet.getWeightKg());
-                        workoutSet.setPrevReps(pastSet.getReps());
-                    });
+                    .ifPresent(pastSet -> copyPreviousStats(workoutSet, pastSet));
         }
+    }
+
+    /**
+     * Fills the greyed-out "last time" hints shown next to the set inputs. Time and distance
+     * are included so that a timed exercise gets a hint too, not an empty cell.
+     */
+    private void copyPreviousStats(WorkoutSet target, WorkoutSet pastSet) {
+        target.setPrevWeightKg(pastSet.getWeightKg());
+        target.setPrevReps(pastSet.getReps());
+        target.setPrevDurationSeconds(pastSet.getDurationSeconds());
+        target.setPrevDistanceMeters(pastSet.getDistanceMeters());
+    }
+
+    private void clearPreviousStats(WorkoutSet target) {
+        target.setPrevWeightKg(null);
+        target.setPrevReps(null);
+        target.setPrevDurationSeconds(null);
+        target.setPrevDistanceMeters(null);
     }
 
     @Transactional

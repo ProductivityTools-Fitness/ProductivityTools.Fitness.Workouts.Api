@@ -66,6 +66,14 @@ public class Exercise {
     @Column(name = "is_system", nullable = false)
     private Boolean isSystem = false;
 
+    /**
+     * How a set of this exercise is measured. Defaults to weight x reps, which is what
+     * every exercise created before V11 was implicitly assumed to be.
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tracking_type", nullable = false, length = 20)
+    private TrackingType trackingType = TrackingType.WEIGHT_REPS;
+
     @Column(name = "created_at")
     private OffsetDateTime createdAt = OffsetDateTime.now();
 
