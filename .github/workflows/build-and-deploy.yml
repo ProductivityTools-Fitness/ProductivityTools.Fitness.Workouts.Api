@@ -15,10 +15,14 @@ jobs:
             server-port: "8084"
             db-url: "jdbc:postgresql://10.10.0.2:5432/ptfitness-workouts"
             db-user: "postgres"
+            # The Catalog API runs on its own VM in GCP, so the localhost default would never resolve.
+            catalog-api-url: "http://10.10.0.8:8085/api"
           - target-runner: "T460Ubuntu1"
             server-port: "8084"
             db-url: "jdbc:postgresql://localhost:5432/ptfitness-workouts"
             db-user: "postgres"
+            # Both APIs share the same machine at home.
+            catalog-api-url: "http://localhost:8085/api"
 
     runs-on: [ self-hosted, "${{ matrix.target-runner }}" ]
 
@@ -68,6 +72,7 @@ jobs:
         DB_URL: ${{ matrix.db-url }}
         DB_USER: ${{ matrix.db-user }}
         DB_PASS: ${{ secrets.DB_PASSWORD }}
+        CATALOG_API_URL: ${{ matrix.catalog-api-url }}
       run: |
         echo "Configuring environment variables and systemd service file..."
         
@@ -76,6 +81,7 @@ jobs:
         SERVER_PORT=$SERVER_PORT
         DB_URL=$DB_URL
         DB_USERNAME=$DB_USER
+        CATALOG_API_URL=$CATALOG_API_URL
         EOF
 
         if [ -n "$DB_PASS" ]; then
@@ -95,4 +101,6 @@ jobs:
     - name: Start application
       run: |
         echo "Starting application"
-        sudo systemctl start fitness-workouts-api
+        # enable, not just start: without it the service would not come back after a VM reboot
+        sudo systemctl enable --now fitness-workouts-api
+        sudo systemctl restart fitness-workouts-api
