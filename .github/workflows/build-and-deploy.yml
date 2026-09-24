@@ -15,8 +15,9 @@ jobs:
             server-port: "8084"
             db-url: "jdbc:postgresql://10.10.0.2:5432/ptfitness-workouts"
             db-user: "postgres"
-            # The Catalog API runs on its own VM in GCP, so the localhost default would never resolve.
-            catalog-api-url: "http://10.10.0.8:8085/api"
+            # The Catalog API runs on its own VM in GCP; GCE internal DNS resolves the instance
+            # name to its current internal IP even after the VM is recreated.
+            catalog-api-url: "http://fitness-catalog-api:8085/api"
           - target-runner: "T460Ubuntu1"
             server-port: "8084"
             db-url: "jdbc:postgresql://localhost:5432/ptfitness-workouts"
