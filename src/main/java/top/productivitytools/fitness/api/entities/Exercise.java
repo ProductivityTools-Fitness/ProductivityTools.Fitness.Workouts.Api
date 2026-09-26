@@ -74,6 +74,9 @@ public class Exercise {
     @Column(name = "tracking_type", nullable = false, length = 20)
     private TrackingType trackingType = TrackingType.WEIGHT_REPS;
 
+    @Column(name = "wake_lock_sentinel", nullable = false)
+    private Boolean wakeLockSentinel = false;
+
     @Column(name = "created_at")
     private OffsetDateTime createdAt = OffsetDateTime.now();
 

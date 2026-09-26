@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,6 +23,8 @@ public class ExerciseController {
     
     private final ExerciseService exerciseService;
 
+    public record UpdateExerciseSettingsRequest(Boolean wakeLockSentinel) {}
+
     @GetMapping("/list")
     public List<Exercise> getExerciseList() {
         return exerciseService.getExerciseList();
@@ -30,6 +34,17 @@ public class ExerciseController {
     public Exercise getExerciseById(@PathVariable Long id) {
         return exerciseService.getExerciseById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Exercise not found with id: " + id));
+    }
+
+    @PostMapping("/{id}/settings")
+    public Exercise updateExerciseSettings(
+            @PathVariable Long id,
+            @RequestBody UpdateExerciseSettingsRequest request) {
+        try {
+            return exerciseService.updateExerciseSettings(id, request != null ? request.wakeLockSentinel() : null);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
     /**

@@ -83,55 +83,18 @@ public class HevyExerciseCatalogService {
 
         int createdCount = 0;
         for (HevyExerciseCatalogItem item : catalogItems) {
-            if (item.catalogExerciseId() != null && !item.catalogExerciseId().isBlank()) {
-                Optional<Exercise> byCatalogId = exerciseRepository.findByCatalogExerciseId(item.catalogExerciseId());
-                if (byCatalogId.isPresent()) {
-                    syncTrackingType(byCatalogId.get(), item);
-                    continue;
-                }
-                List<Exercise> byName = exerciseRepository.findAvailableExercisesByName(null, item.name());
-                if (!byName.isEmpty()) {
-                    syncTrackingType(byName.get(0), item);
-                    continue;
-                }
-
-                Exercise exercise = new Exercise();
-                exercise.setName(item.name());
-                exercise.setCatalogExerciseId(item.catalogExerciseId());
-                exercise.setIsSystem(true);
-                exercise.setUser(null);
-                exercise.setBodyCategory(item.bodyCategory());
-                exercise.setEquipmentCategory(item.equipmentCategory());
-                exercise.setTargetMuscle(item.targetMuscle());
-                exercise.setSecondaryMuscles(item.secondaryMuscles() != null ? item.secondaryMuscles() : List.of());
-                exercise.setInstructions(item.instructions() != null ? item.instructions() : List.of());
-                exercise.setGifUrl(item.gifUrl());
-                exercise.setTrackingType(item.trackingType());
-                exerciseRepository.save(exercise);
-                createdCount++;
-            } else {
-                // Standalone unmapped exercise
-                List<Exercise> byName = exerciseRepository.findAvailableExercisesByName(null, item.name());
-                if (!byName.isEmpty()) {
-                    syncTrackingType(byName.get(0), item);
-                    continue;
-                }
-
-                Exercise exercise = new Exercise();
-                exercise.setName(item.name());
-                exercise.setCatalogExerciseId(null);
-                exercise.setIsSystem(true);
-                exercise.setUser(null);
-                exercise.setBodyCategory(item.bodyCategory());
-                exercise.setEquipmentCategory(item.equipmentCategory());
-                exercise.setTargetMuscle(item.targetMuscle());
-                exercise.setSecondaryMuscles(item.secondaryMuscles() != null ? item.secondaryMuscles() : List.of());
-                exercise.setInstructions(item.instructions() != null ? item.instructions() : List.of());
-                exercise.setGifUrl(null);
-                exercise.setTrackingType(item.trackingType());
-                exerciseRepository.save(exercise);
-                createdCount++;
+            Optional<Exercise> existing = findExistingExerciseForItem(item);
+            if (existing.isPresent()) {
+                syncCatalogFields(existing.get(), item);
+                continue;
             }
+
+            Exercise exercise = new Exercise();
+            applyCatalogFields(exercise, item);
+            exercise.setIsSystem(true);
+            exercise.setUser(null);
+            exerciseRepository.save(exercise);
+            createdCount++;
         }
 
         if (createdCount > 0) {
@@ -140,22 +103,69 @@ public class HevyExerciseCatalogService {
         return createdCount;
     }
 
-    /**
-     * Brings an exercise that already exists in the database in line with the mapping file.
-     *
-     * <p>Only ever moves away from the {@code WEIGHT_REPS} default: exercises preloaded before
-     * tracking types existed all carry it, whereas a type set by a Hevy import or by hand is a
-     * deliberate value and must survive.
-     */
-    private void syncTrackingType(Exercise exercise, HevyExerciseCatalogItem item) {
-        if (item.trackingType() == TrackingType.WEIGHT_REPS) {
-            return;
+    private Optional<Exercise> findExistingExerciseForItem(HevyExerciseCatalogItem item) {
+        if (item.catalogExerciseId() != null && !item.catalogExerciseId().isBlank()) {
+            Optional<Exercise> byCatalogId = exerciseRepository.findByCatalogExerciseId(item.catalogExerciseId());
+            if (byCatalogId.isPresent()) {
+                return byCatalogId;
+            }
         }
-        if (exercise.getTrackingType() != TrackingType.WEIGHT_REPS) {
-            return;
+        for (String candidateName : Arrays.asList(item.name(), item.hevyTitle(), item.hevyPlTitle())) {
+            if (candidateName != null && !candidateName.isBlank()) {
+                List<Exercise> byName = exerciseRepository.findAvailableExercisesByName(null, candidateName);
+                if (!byName.isEmpty()) {
+                    return Optional.of(byName.get(0));
+                }
+            }
         }
-        exercise.setTrackingType(item.trackingType());
-        exerciseRepository.save(exercise);
-        log.info("Updated tracking type of '{}' to {}", exercise.getName(), item.trackingType());
+        if ("Plank".equalsIgnoreCase(item.hevyTitle())) {
+            Optional<Exercise> legacyPlank = exerciseRepository.findByCatalogExerciseId("fp_weighted_front_plank");
+            if (legacyPlank.isPresent()) {
+                return legacyPlank;
+            }
+            List<Exercise> legacyByName = exerciseRepository.findAvailableExercisesByName(null, "weighted front plank");
+            if (!legacyByName.isEmpty()) {
+                return Optional.of(legacyByName.get(0));
+            }
+        }
+        return Optional.empty();
+    }
+
+    private void applyCatalogFields(Exercise exercise, HevyExerciseCatalogItem item) {
+        String cleanCatalogId = (item.catalogExerciseId() != null && !item.catalogExerciseId().isBlank())
+                ? item.catalogExerciseId()
+                : null;
+        exercise.setName(item.name());
+        exercise.setCatalogExerciseId(cleanCatalogId);
+        exercise.setBodyCategory(item.bodyCategory());
+        exercise.setEquipmentCategory(item.equipmentCategory());
+        exercise.setTargetMuscle(item.targetMuscle());
+        exercise.setSecondaryMuscles(item.secondaryMuscles() != null ? item.secondaryMuscles() : List.of());
+        exercise.setInstructions(item.instructions() != null ? item.instructions() : List.of());
+        exercise.setGifUrl(cleanCatalogId != null ? item.gifUrl() : null);
+        if (exercise.getTrackingType() == null || exercise.getTrackingType() == TrackingType.WEIGHT_REPS
+                || item.trackingType() != TrackingType.WEIGHT_REPS) {
+            exercise.setTrackingType(item.trackingType());
+        }
+        if (exercise.getId() == null && (exercise.getWakeLockSentinel() == null || !exercise.getWakeLockSentinel())) {
+            boolean isTimed = item.trackingType() == TrackingType.DURATION
+                    || item.trackingType() == TrackingType.DURATION_WEIGHT
+                    || item.trackingType() == TrackingType.DISTANCE_DURATION;
+            exercise.setWakeLockSentinel(isTimed);
+        }
+    }
+
+    private void syncCatalogFields(Exercise exercise, HevyExerciseCatalogItem item) {
+        String cleanCatalogId = (item.catalogExerciseId() != null && !item.catalogExerciseId().isBlank())
+                ? item.catalogExerciseId()
+                : null;
+        boolean changed = !Objects.equals(exercise.getName(), item.name())
+                || !Objects.equals(exercise.getCatalogExerciseId(), cleanCatalogId)
+                || (item.trackingType() != TrackingType.WEIGHT_REPS && exercise.getTrackingType() != item.trackingType());
+        if (changed) {
+            applyCatalogFields(exercise, item);
+            exerciseRepository.save(exercise);
+            log.info("Synchronized exercise '{}' (catalogExerciseId={})", exercise.getName(), exercise.getCatalogExerciseId());
+        }
     }
 }

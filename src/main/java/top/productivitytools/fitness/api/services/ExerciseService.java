@@ -46,6 +46,15 @@ public class ExerciseService {
         return exerciseRepository.findById(id)
                 .flatMap(exerciseImageRepository::findByExercise);
     }
+
+    public Exercise updateExerciseSettings(Long id, Boolean wakeLockSentinel) {
+        Exercise exercise = exerciseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Exercise not found with id: " + id));
+        if (wakeLockSentinel != null) {
+            exercise.setWakeLockSentinel(wakeLockSentinel);
+        }
+        return exerciseRepository.save(exercise);
+    }
 }
 
 
