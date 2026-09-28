@@ -177,3 +177,21 @@ export DB_PASSWORD="dfsafafa"
       -H "Content-Type: application/json" \
       -d '{"access-token": "eeKuxxD89Prp2HKAjSn11WM0uTK/boAPYp8PGQG1"}'
     ```
+
+---
+
+## 🛡️ Cross-Project Database Backup Process (Disaster Recovery)
+
+Native Cloud SQL automated backups live inside the `pwujczyk-pt` project and are removed if the Cloud SQL instance or project is deleted. To survive full project deletion or `terraform destroy`, both `ptfitness-workouts` and `ptfitness-catalog` are exported daily to a **Cloud Storage bucket in a separate backup GCP project**.
+
+1. **Destination Bucket (Backup Project)**:
+   * Create a regional bucket in `europe-central2` (e.g. `gs://pwujczyk-fitness-backups`) with **Object versioning** enabled.
+   * Grant **`Storage Object Admin`** (`roles/storage.objectAdmin`) on the bucket to the **Cloud SQL instance's Google-managed service account**:
+     ```text
+     p213056333340-p4axlu@gcp-sa-cloud-sql.iam.gserviceaccount.com
+     ```
+     *(Cloud Scheduler only triggers the export API; the Cloud SQL instance itself performs the upload to Cloud Storage).*
+   * Add an **IAM Condition** (`Title: Backup from Cloud SQL ptfitness (project pwujczyk-pt)`) so anyone inspecting the backup project knows which project (`213056333340` = `pwujczyk-pt`) owns the service account. Once `ptfitness` is deleted, GCP prefixes the principal with `deleted:serviceAccount:...`, indicating it can be safely removed.
+2. **Cloud Scheduler (`pwujczyk-pt`)**:
+   * Grant **`Cloud SQL Admin`** (`roles/cloudsql.admin`) to `fitness-vm@pwujczyk-pt.iam.gserviceaccount.com` (or a dedicated `cloud-sql-backup-scheduler` service account).
+   * Create two daily HTTP `POST` jobs (at `03:00` and `03:10`) calling `https://sqladmin.googleapis.com/v1/projects/pwujczyk-pt/instances/ptfitness/export` with OAuth token authentication (`https://www.googleapis.com/auth/cloud-platform`) to export `ptfitness-workouts.sql.gz` and `ptfitness-catalog.sql.gz`.
