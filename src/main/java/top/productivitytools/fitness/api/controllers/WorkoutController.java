@@ -11,6 +11,7 @@ import top.productivitytools.fitness.api.entities.WorkoutSet;
 import top.productivitytools.fitness.api.services.WorkoutService;
 import top.productivitytools.fitness.api.dto.requests.AddExercisesRequest;
 import top.productivitytools.fitness.api.dto.requests.AddSetRequest;
+import top.productivitytools.fitness.api.dto.requests.DeleteExerciseRequest;
 import top.productivitytools.fitness.api.dto.requests.DeleteSetRequest;
 import top.productivitytools.fitness.api.dto.hevy.HevyImportRequest;
 import top.productivitytools.fitness.api.dto.hevy.HevyImportResponse;
@@ -77,6 +78,14 @@ public class WorkoutController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Workout ID must be provided in the URL path or in the request body");
         }
         return workoutService.addExercisesToWorkout(targetWorkoutId, request);
+    }
+
+    @PostMapping("/deleteExercise")
+    public boolean deleteExercise(@RequestBody DeleteExerciseRequest request) {
+        if (request == null || request.workoutExerciseId() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "WorkoutExercise ID must be provided in request body");
+        }
+        return workoutService.deleteExercise(request.workoutExerciseId());
     }
 
     @PostMapping("/addSet")

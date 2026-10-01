@@ -267,6 +267,30 @@ public class WorkoutService {
         return true;
     }
 
+    @Transactional
+    public boolean deleteExercise(Long workoutExerciseId) {
+        if (workoutExerciseId == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "WorkoutExercise ID must be provided");
+        }
+
+        WorkoutExercise workoutExercise = workoutExerciseRepository.findById(workoutExerciseId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "WorkoutExercise not found with id: " + workoutExerciseId));
+
+        Workout workout = workoutExercise.getWorkout();
+        if (workout != null) {
+            workout.getExercises().removeIf(we -> workoutExerciseId.equals(we.getId()));
+            int orderIndex = 1;
+            for (WorkoutExercise we : workout.getExercises()) {
+                we.setOrderIndex(orderIndex++);
+            }
+            repository.save(workout);
+        } else {
+            workoutExerciseRepository.delete(workoutExercise);
+        }
+
+        return true;
+    }
+
     public FitnessUser getCurrentUser() {
         FitnessUser user = UserContext.getCurrentUser();
         if (user == null) {

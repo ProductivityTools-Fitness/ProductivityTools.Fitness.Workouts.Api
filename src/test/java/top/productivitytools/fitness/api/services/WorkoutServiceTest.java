@@ -486,4 +486,41 @@ class WorkoutServiceTest {
         assertEquals(60, saved.getDurationSeconds());
         assertEquals(0, saved.getDistanceMeters().compareTo(new BigDecimal("1000.00")));
     }
+
+    @Test
+    void deleteExercise_WhenAttachedToWorkout_RemovesExerciseRenumberOrderAndSavesWorkout() {
+        WorkoutExercise we1 = new WorkoutExercise();
+        we1.setId(50L);
+        we1.setWorkout(currentWorkout);
+        we1.setOrderIndex(1);
+
+        WorkoutExercise we2 = new WorkoutExercise();
+        we2.setId(51L);
+        we2.setWorkout(currentWorkout);
+        we2.setOrderIndex(2);
+
+        currentWorkout.getExercises().add(we1);
+        currentWorkout.getExercises().add(we2);
+
+        when(workoutExerciseRepository.findById(50L)).thenReturn(Optional.of(we1));
+        when(workoutRepository.save(any(Workout.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        boolean result = workoutService.deleteExercise(50L);
+
+        assertTrue(result);
+        assertEquals(1, currentWorkout.getExercises().size());
+        assertEquals(51L, currentWorkout.getExercises().get(0).getId());
+        assertEquals(1, currentWorkout.getExercises().get(0).getOrderIndex());
+        verify(workoutRepository).save(currentWorkout);
+    }
+
+    @Test
+    void deleteExercise_WhenNotFound_ThrowsNotFoundException() {
+        when(workoutExerciseRepository.findById(999L)).thenReturn(Optional.empty());
+
+        ResponseStatusException ex = assertThrows(ResponseStatusException.class, () ->
+                workoutService.deleteExercise(999L));
+
+        assertEquals(HttpStatus.NOT_FOUND, ex.getStatusCode());
+    }
 }
