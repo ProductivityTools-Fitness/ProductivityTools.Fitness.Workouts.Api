@@ -11,17 +11,25 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
-    private static final List<String> ALLOWED_ORIGIN_PATTERNS = List.of(
-            "https://service-status.productivitytools.top",
-            "https://pt-service-status-93484780890.us-central1.run.app",
-            "https://localhost:4200",
-            "http://localhost:4200",
-            "https://pts-fitness.web.app"
-    );
+    private static final List<String> ALLOWED_ORIGIN_PATTERNS = Stream.concat(
+            Stream.of(
+                    "https://service-status.productivitytools.top",
+                    "https://pt-service-status-93484780890.us-central1.run.app",
+                    "https://pts-fitness.web.app"
+            ),
+            IntStream.rangeClosed(4200, 4300)
+                    .boxed()
+                    .flatMap(port -> Stream.of(
+                            "http://localhost:" + port,
+                            "https://localhost:" + port
+                    ))
+    ).toList();
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
