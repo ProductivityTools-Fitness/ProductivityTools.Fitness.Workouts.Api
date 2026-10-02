@@ -31,5 +31,20 @@ public interface WorkoutExerciseRepository extends JpaRepository<WorkoutExercise
         @Param("currentWorkoutStartTime") OffsetDateTime currentWorkoutStartTime,
         Pageable pageable
     );
+
+    /** Every workout in which the user performed the exercise and logged at least one set, newest first. */
+    @Query("""
+        SELECT we FROM WorkoutExercise we
+        JOIN FETCH we.workout w
+        WHERE w.user.id = :userId
+          AND we.exercise.id = :exerciseId
+          AND we.sets IS NOT EMPTY
+        ORDER BY w.startTime DESC, w.id DESC
+    """)
+    List<WorkoutExercise> findHistoryForExercise(
+        @Param("userId") Long userId,
+        @Param("exerciseId") Long exerciseId,
+        Pageable pageable
+    );
 }
 

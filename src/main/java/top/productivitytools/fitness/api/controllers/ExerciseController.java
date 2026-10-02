@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import top.productivitytools.fitness.api.dto.responses.ExerciseHistoryEntryDto;
 import top.productivitytools.fitness.api.entities.Exercise;
 import top.productivitytools.fitness.api.services.ExerciseService;
 
@@ -45,6 +47,14 @@ public class ExerciseController {
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
+    }
+
+    /** Past performances of the exercise by the current user, newest first. */
+    @GetMapping("/{id}/history")
+    public List<ExerciseHistoryEntryDto> getExerciseHistory(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "20") int limit) {
+        return exerciseService.getExerciseHistory(id, limit);
     }
 
     /**
