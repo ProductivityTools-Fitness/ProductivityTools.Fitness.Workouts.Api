@@ -2,6 +2,8 @@ package top.productivitytools.fitness.api.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,30 @@ public class CatalogService {
     private final ExerciseRepository exerciseRepository;
     private final ExerciseImageRepository exerciseImageRepository;
     private final CatalogClient catalogClient;
+
+    /**
+     * Backfills metadata and animations from Fitness.Catalog.Api for any existing exercise rows
+     * that already carry a {@code catalog_exercise_id} (preserving their {@code exercise.id} and
+     * workout history links) but do not yet have a local image copy in {@code exercise_image}.
+     */
+    @EventListener(ApplicationReadyEvent.class)
+    public void syncMissingCatalogImages() {
+        List<Exercise> missingImages = exerciseRepository.findByCatalogExerciseIdIsNotNullAndImageFileNameIsNull();
+        if (missingImages.isEmpty()) {
+            return;
+        }
+        log.info("Synchronizing {} catalog exercises missing local animations from Fitness.Catalog.Api...", missingImages.size());
+        int synced = 0;
+        for (Exercise exercise : missingImages) {
+            try {
+                importExercise(exercise.getCatalogExerciseId());
+                synced++;
+            } catch (RuntimeException e) {
+                log.warn("Could not synchronize catalog exercise {}: {}", exercise.getCatalogExerciseId(), e.getMessage());
+            }
+        }
+        log.info("Synchronized {}/{} catalog exercises with Fitness.Catalog.Api.", synced, missingImages.size());
+    }
 
     public List<CatalogSearchResultDto> searchExercises(String name, String bodyCategory,
                                                         String equipmentCategory, Integer limit) {
@@ -70,7 +96,8 @@ public class CatalogService {
 
     /**
      * Copies an exercise from the catalogue into the local database. Idempotent: importing the
-     * same exercise twice returns the row created the first time.
+     * same exercise twice returns the row created the first time. If an existing row has not yet
+     * had its animation copied, refreshes its metadata and downloads the animation in-place.
      */
     @Transactional
     public Exercise importExercise(String catalogExerciseId) {
@@ -79,7 +106,8 @@ public class CatalogService {
         }
 
         Optional<Exercise> existing = exerciseRepository.findByCatalogExerciseId(catalogExerciseId);
-        if (existing.isPresent()) {
+        if (existing.isPresent() && existing.get().getImageFileName() != null
+                && exerciseImageRepository.findByExercise(existing.get()).isPresent()) {
             return existing.get();
         }
 
@@ -87,13 +115,13 @@ public class CatalogService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Exercise not found in the catalog with id: " + catalogExerciseId));
 
-        // A system exercise with this name may already exist (the Hevy preload creates some).
-        // The unique index on (user_id, lower(name)) would reject a second row, so adopt the
-        // existing one and attach the catalogue key to it instead of inserting.
-        Exercise exercise = exerciseRepository.findAvailableExercisesByName(null, item.name()).stream()
-                .filter(e -> e.getCatalogExerciseId() == null)
-                .findFirst()
-                .orElseGet(Exercise::new);
+        // Reuse the existing row if present (preserving exercise.id for workout_exercise links),
+        // or adopt a system exercise with the same name if one exists without a catalog ID.
+        Exercise exercise = existing.orElseGet(() ->
+                exerciseRepository.findAvailableExercisesByName(null, item.name()).stream()
+                        .filter(e -> e.getCatalogExerciseId() == null)
+                        .findFirst()
+                        .orElseGet(Exercise::new));
 
         exercise.setCatalogExerciseId(item.exerciseId());
         exercise.setName(item.name());

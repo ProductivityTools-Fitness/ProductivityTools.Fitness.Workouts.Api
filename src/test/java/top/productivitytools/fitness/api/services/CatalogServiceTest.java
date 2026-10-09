@@ -79,17 +79,44 @@ class CatalogServiceTest {
     }
 
     @Test
-    void importExercise_WhenAlreadyImported_ReturnsTheExistingRowWithoutCallingTheCatalog() {
+    void importExercise_WhenAlreadyImportedWithImage_ReturnsTheExistingRowWithoutCallingTheCatalog() {
         Exercise existing = new Exercise();
         existing.setId(7L);
         existing.setCatalogExerciseId("fp_barbell_curl");
+        existing.setImageFileName("fp_barbell_curl.gif");
         when(exerciseRepository.findByCatalogExerciseId("fp_barbell_curl")).thenReturn(Optional.of(existing));
+        when(exerciseImageRepository.findByExercise(existing)).thenReturn(Optional.of(new ExerciseImage()));
 
         Exercise result = catalogService.importExercise("fp_barbell_curl");
 
         assertSame(existing, result);
         verify(catalogClient, never()).getExercise(anyString());
         verify(exerciseRepository, never()).save(any());
+    }
+
+    @Test
+    void importExercise_WhenExistingRowMissingImage_UpdatesMetadataAndDownloadsImageInPlace() {
+        byte[] gif = "GIF89a-bytes".getBytes(StandardCharsets.UTF_8);
+        Exercise existing = new Exercise();
+        existing.setId(7L);
+        existing.setCatalogExerciseId("fp_barbell_military_press");
+        existing.setName("barbell standing bradford press");
+        existing.setImageFileName(null);
+
+        when(exerciseRepository.findByCatalogExerciseId("fp_barbell_military_press")).thenReturn(Optional.of(existing));
+        when(catalogClient.getExercise("fp_barbell_military_press"))
+                .thenReturn(Optional.of(catalogItem("fp_barbell_military_press", "barbell military press")));
+        when(exerciseRepository.save(any(Exercise.class))).thenAnswer(inv -> inv.getArgument(0));
+        when(catalogClient.getImage("fp_barbell_military_press"))
+                .thenReturn(Optional.of(new CatalogClient.CatalogImage(gif, "image/gif")));
+        when(exerciseImageRepository.findByExercise(existing)).thenReturn(Optional.empty());
+
+        Exercise result = catalogService.importExercise("fp_barbell_military_press");
+
+        assertEquals(7L, result.getId());
+        assertEquals("barbell military press", result.getName());
+        assertEquals("barbell military press.gif", result.getImageFileName());
+        verify(exerciseImageRepository).save(any(ExerciseImage.class));
     }
 
     @Test

@@ -13,4 +13,6 @@ public interface CatalogExerciseRepository extends JpaRepository<Exercise, Long>
     Optional<Exercise> findByCatalogExerciseId(String catalogExerciseId);
 
     List<Exercise> findByCatalogExerciseIdIn(List<String> catalogExerciseIds);
+
+    List<Exercise> findByCatalogExerciseIdIsNotNullAndImageFileNameIsNull();
 }
